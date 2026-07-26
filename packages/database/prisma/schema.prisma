@@ -1,0 +1,1558 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                         String                   @id @default(cuid())
+  publicId                   String                   @unique @default(uuid())
+  email                      String?                  @unique
+  phone                      String?                  @unique
+  passwordHash               String?
+  displayName                String?
+  avatarUrl                  String?
+  status                     UserStatus               @default(PENDING)
+  primaryRole                UserRole
+  locale                     String                   @default("en-IN")
+  timezone                   String                   @default("Asia/Kolkata")
+  emailVerifiedAt            DateTime?
+  phoneVerifiedAt            DateTime?
+  lastLoginAt                DateTime?
+  createdAt                  DateTime                 @default(now())
+  updatedAt                  DateTime                 @updatedAt
+  deletedAt                  DateTime?
+  adminProfile               AdminProfile?
+  aiRunsRequested            AiRun[]                  @relation("AiRunRequestedBy")
+  analyticsEvents            AnalyticsEvent[]
+  assignmentSubmissions      AssignmentSubmission[]   @relation("AssignmentSubmittedBy")
+  attendanceMarks            Attendance[]             @relation("AttendanceMarkedBy")
+  auditLogs                  AuditLog[]               @relation("AuditActor")
+  authProviders              AuthProvider[]
+  changedBookingStatuses     BookingStatusHistory[]   @relation("BookingStatusChangedBy")
+  couponRedemptions          CouponRedemption[]
+  devices                    Device[]
+  homeworkSubmissions        HomeworkSubmission[]     @relation("HomeworkSubmittedBy")
+  ownedInstitutes            Institute[]              @relation("InstituteOwner")
+  sentMessages               Message[]                @relation("MessageSender")
+  notifications              Notification[]
+  notificationPreferences    NotificationPreference[]
+  otpChallenges              OtpChallenge[]
+  parentProfile              Parent?
+  progressReportsGenerated   ProgressReport[]         @relation("ProgressReportGeneratedBy")
+  referralsReceived          Referral[]               @relation("ReferralReferredUser")
+  refundsApproved            Refund[]                 @relation("RefundApprovedBy")
+  refundsRequested           Refund[]                 @relation("RefundRequestedBy")
+  reviewsModerated           Review[]                 @relation("ReviewModeratedBy")
+  studentProfile             Student?                 @relation("StudentUserAccount")
+  supportTicketsAssigned     SupportTicket[]          @relation("SupportTicketAssignedTo")
+  supportTicketsOpened       SupportTicket[]          @relation("SupportTicketOpenedBy")
+  supportMessages            SupportTicketMessage[]   @relation("SupportTicketMessageSender")
+  tutorProfile               Tutor?
+  rolesAssigned              UserRoleAssignment[]     @relation("RoleAssignedBy")
+  roleAssignments            UserRoleAssignment[]     @relation("UserRoleAssignments")
+  sessions                   UserSession[]
+  reviewedVerificationChecks VerificationCheck[]      @relation("VerificationReviewedBy")
+
+  @@index([status])
+  @@index([primaryRole])
+  @@index([createdAt])
+}
+
+model UserRoleAssignment {
+  id               String   @id @default(cuid())
+  userId           String
+  role             UserRole
+  assignedByUserId String?
+  assignedAt       DateTime @default(now())
+  assignedBy       User?    @relation("RoleAssignedBy", fields: [assignedByUserId], references: [id])
+  user             User     @relation("UserRoleAssignments", fields: [userId], references: [id])
+
+  @@unique([userId, role])
+  @@index([role])
+}
+
+model AuthProvider {
+  id             String           @id @default(cuid())
+  userId         String
+  provider       AuthProviderType
+  providerUserId String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  user           User             @relation(fields: [userId], references: [id])
+
+  @@unique([provider, providerUserId])
+  @@index([userId])
+}
+
+model UserSession {
+  id               String    @id @default(cuid())
+  userId           String
+  refreshTokenHash String    @unique
+  deviceId         String?
+  ipAddress        String?
+  userAgent        String?
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  device           Device?   @relation(fields: [deviceId], references: [id])
+  user             User      @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model OtpChallenge {
+  id         String     @id @default(cuid())
+  userId     String?
+  purpose    OtpPurpose
+  phone      String?
+  email      String?
+  codeHash   String
+  attempts   Int        @default(0)
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime   @default(now())
+  user       User?      @relation(fields: [userId], references: [id])
+
+  @@index([phone, purpose])
+  @@index([email, purpose])
+  @@index([expiresAt])
+}
+
+model Device {
+  id        String        @id @default(cuid())
+  userId    String
+  platform  String
+  pushToken String?
+  model     String?
+  osVersion String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id])
+  sessions  UserSession[]
+
+  @@index([userId])
+  @@index([pushToken])
+}
+
+model AdminProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  title       String?
+  permissions Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Parent {
+  id                        String                  @id @default(cuid())
+  userId                    String                  @unique
+  city                      String?
+  preferredLanguage         String                  @default("en")
+  referralCode              String?                 @unique
+  createdAt                 DateTime                @default(now())
+  updatedAt                 DateTime                @updatedAt
+  bookings                  Booking[]
+  conversations             Conversation[]
+  user                      User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments                  Payment[]
+  referrals                 Referral[]              @relation("ReferralReferrerParent")
+  reviews                   Review[]
+  students                  StudentGuardian[]
+  reservedAvailabilitySlots TutorAvailabilitySlot[] @relation("SlotReservedByParent")
+
+  @@index([city])
+}
+
+model Student {
+  id                    String                 @id @default(cuid())
+  userId                String?                @unique
+  fullName              String
+  dateOfBirth           DateTime?
+  gender                Gender?
+  grade                 Int?
+  curriculum            Curriculum?
+  schoolName            String?
+  learningGoals         String?
+  notes                 String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  deletedAt             DateTime?
+  aiRuns                AiRun[]
+  assignments           Assignment[]
+  assignmentSubmissions AssignmentSubmission[]
+  attendanceRecords     Attendance[]
+  bookings              Booking[]
+  homework              Homework[]
+  homeworkSubmissions   HomeworkSubmission[]
+  progressReports       ProgressReport[]
+  reviews               Review[]
+  user                  User?                  @relation("StudentUserAccount", fields: [userId], references: [id])
+  guardians             StudentGuardian[]
+
+  @@index([grade])
+  @@index([curriculum])
+}
+
+model StudentGuardian {
+  id              String   @id @default(cuid())
+  studentId       String
+  parentId        String
+  relationToChild String
+  isPrimary       Boolean  @default(false)
+  canBook         Boolean  @default(true)
+  canViewProgress Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  parent          Parent   @relation(fields: [parentId], references: [id])
+  student         Student  @relation(fields: [studentId], references: [id])
+
+  @@unique([studentId, parentId])
+  @@index([parentId])
+}
+
+model Tutor {
+  id                     String                  @id @default(cuid())
+  userId                 String                  @unique
+  status                 TutorStatus             @default(DRAFT)
+  headline               String?
+  bio                    String?
+  gender                 Gender?
+  experienceYears        Int                     @default(0)
+  city                   String?
+  locality               String?
+  latitude               Decimal?                @db.Decimal(9, 6)
+  longitude              Decimal?                @db.Decimal(9, 6)
+  baseHourlyRate         Decimal?                @db.Decimal(12, 2)
+  currency               String                  @default("INR")
+  profileCompletionScore Int                     @default(0)
+  averageRating          Decimal                 @default(0) @db.Decimal(3, 2)
+  reviewCount            Int                     @default(0)
+  completedClassesCount  Int                     @default(0)
+  cancellationRate       Decimal                 @default(0) @db.Decimal(5, 2)
+  responseRate           Decimal                 @default(0) @db.Decimal(5, 2)
+  approvedAt             DateTime?
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  deletedAt              DateTime?
+  aiRuns                 AiRun[]
+  assignments            Assignment[]
+  attendanceRecords      Attendance[]
+  bookings               Booking[]
+  conversations          Conversation[]
+  homework               Homework[]
+  ledgerEntries          LedgerEntry[]
+  progressReports        ProgressReport[]
+  reviewsReceived        Review[]
+  user                   User                    @relation(fields: [userId], references: [id])
+  availabilitySlots      TutorAvailabilitySlot[]
+  blackoutPeriods        TutorBlackoutPeriod[]
+  breakPeriods           TutorBreakPeriod[]
+  instituteLinks         TutorInstitute[]
+  languages              TutorLanguage[]
+  qualifications         TutorQualification[]
+  serviceAreas           TutorServiceArea[]
+  subjectOfferings       TutorSubject[]
+  weeklySlots            TutorWeeklySlot[]
+  verificationChecks     VerificationCheck[]
+  verificationDocuments  VerificationDocument[]
+  wallet                 Wallet?
+  withdrawals            Withdrawal[]
+
+  @@index([status])
+  @@index([city])
+  @@index([averageRating])
+  @@index([completedClassesCount])
+}
+
+model Institute {
+  id          String           @id @default(cuid())
+  ownerUserId String?
+  name        String
+  slug        String           @unique
+  status      InstituteStatus  @default(DRAFT)
+  description String?
+  city        String?
+  phone       String?
+  email       String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  deletedAt   DateTime?
+  owner       User?            @relation("InstituteOwner", fields: [ownerUserId], references: [id])
+  tutors      TutorInstitute[]
+
+  @@index([status])
+  @@index([city])
+}
+
+model TutorInstitute {
+  id          String    @id @default(cuid())
+  tutorId     String
+  instituteId String
+  role        String?
+  startedAt   DateTime?
+  endedAt     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  institute   Institute @relation(fields: [instituteId], references: [id])
+  tutor       Tutor     @relation(fields: [tutorId], references: [id])
+
+  @@unique([tutorId, instituteId])
+  @@index([instituteId])
+}
+
+model TutorQualification {
+  id              String   @id @default(cuid())
+  tutorId         String
+  title           String
+  institutionName String?
+  completionYear  Int?
+  documentFileKey String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  tutor           Tutor    @relation(fields: [tutorId], references: [id])
+
+  @@index([tutorId])
+}
+
+model VerificationCheck {
+  id               String                 @id @default(cuid())
+  tutorId          String
+  type             VerificationType
+  status           VerificationStatus     @default(NOT_SUBMITTED)
+  submittedAt      DateTime?
+  reviewedByUserId String?
+  reviewedAt       DateTime?
+  rejectionReason  String?
+  metadata         Json?
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  reviewedBy       User?                  @relation("VerificationReviewedBy", fields: [reviewedByUserId], references: [id])
+  tutor            Tutor                  @relation(fields: [tutorId], references: [id])
+  documents        VerificationDocument[]
+
+  @@unique([tutorId, type])
+  @@index([status])
+  @@index([reviewedByUserId])
+}
+
+model VerificationDocument {
+  id                  String             @id @default(cuid())
+  tutorId             String
+  verificationCheckId String?
+  type                VerificationType
+  status              DocumentStatus     @default(UPLOADED)
+  fileKey             String
+  originalFileName    String?
+  mimeType            String?
+  uploadedAt          DateTime           @default(now())
+  expiresAt           DateTime?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+  tutor               Tutor              @relation(fields: [tutorId], references: [id])
+  verificationCheck   VerificationCheck? @relation(fields: [verificationCheckId], references: [id])
+
+  @@index([tutorId])
+  @@index([verificationCheckId])
+  @@index([status])
+}
+
+model TutorServiceArea {
+  id        String   @id @default(cuid())
+  tutorId   String
+  city      String
+  locality  String?
+  latitude  Decimal? @db.Decimal(9, 6)
+  longitude Decimal? @db.Decimal(9, 6)
+  radiusKm  Decimal  @default(5) @db.Decimal(6, 2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tutor     Tutor    @relation(fields: [tutorId], references: [id])
+
+  @@index([city])
+  @@index([tutorId])
+}
+
+model Subject {
+  id              String           @id @default(cuid())
+  slug            String           @unique
+  name            String
+  category        SubjectCategory
+  parentSubjectId String?
+  isActive        Boolean          @default(true)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  assignments     Assignment[]
+  bookings        Booking[]
+  homework        Homework[]
+  progressReports ProgressReport[]
+  parent          Subject?         @relation("SubjectHierarchy", fields: [parentSubjectId], references: [id])
+  children        Subject[]        @relation("SubjectHierarchy")
+  tutorOfferings  TutorSubject[]
+
+  @@index([category])
+  @@index([isActive])
+}
+
+model TutorSubject {
+  id             String        @id @default(cuid())
+  tutorId        String
+  subjectId      String
+  gradeMin       Int?
+  gradeMax       Int?
+  curricula      Curriculum[]  @default([])
+  serviceModes   ServiceMode[] @default([])
+  hourlyRate     Decimal?      @db.Decimal(12, 2)
+  trialRate      Decimal?      @db.Decimal(12, 2)
+  isTrialEnabled Boolean       @default(true)
+  isActive       Boolean       @default(true)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  bookings       Booking[]
+  subject        Subject       @relation(fields: [subjectId], references: [id])
+  tutor          Tutor         @relation(fields: [tutorId], references: [id])
+
+  @@unique([tutorId, subjectId, gradeMin, gradeMax])
+  @@index([subjectId])
+  @@index([isActive])
+}
+
+model TutorAvailabilitySlot {
+  id                 String                 @id @default(cuid())
+  tutorId            String
+  startAt            DateTime
+  endAt              DateTime
+  timezone           String                 @default("Asia/Kolkata")
+  status             AvailabilitySlotStatus @default(AVAILABLE)
+  serviceMode        ServiceMode
+  capacity           Int                    @default(1)
+  reservedUntil      DateTime?
+  reservedByParentId String?
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+  booking            Booking?               @relation("BookingAvailabilitySlot")
+  reservedByParent   Parent?                @relation("SlotReservedByParent", fields: [reservedByParentId], references: [id])
+  tutor              Tutor                  @relation(fields: [tutorId], references: [id])
+
+  @@index([tutorId, startAt, endAt])
+  @@index([status, startAt])
+  @@index([reservedUntil])
+}
+
+model TutorBlackoutPeriod {
+  id        String   @id @default(cuid())
+  tutorId   String
+  startAt   DateTime
+  endAt     DateTime
+  reason    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tutor     Tutor    @relation(fields: [tutorId], references: [id])
+
+  @@index([tutorId, startAt, endAt])
+}
+
+model TutorWeeklySlot {
+  id          String      @id @default(cuid())
+  tutorId     String
+  dayOfWeek   DayOfWeek
+  startTime   String
+  endTime     String
+  timezone    String      @default("Asia/Kolkata")
+  serviceMode ServiceMode
+  capacity    Int         @default(1)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  tutor       Tutor       @relation(fields: [tutorId], references: [id])
+
+  @@unique([tutorId, dayOfWeek, startTime, serviceMode])
+  @@index([tutorId, dayOfWeek])
+}
+
+model TutorBreakPeriod {
+  id        String     @id @default(cuid())
+  tutorId   String
+  dayOfWeek DayOfWeek?
+  startTime String
+  endTime   String
+  reason    String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  tutor     Tutor      @relation(fields: [tutorId], references: [id])
+
+  @@index([tutorId])
+}
+
+model Booking {
+  id                       String                 @id @default(cuid())
+  publicId                 String                 @unique @default(uuid())
+  parentId                 String
+  studentId                String
+  tutorId                  String
+  subjectId                String
+  tutorSubjectId           String?
+  availabilitySlotId       String?                @unique
+  classType                ClassType
+  serviceMode              ServiceMode
+  status                   BookingStatus          @default(DRAFT)
+  startAt                  DateTime
+  endAt                    DateTime
+  timezone                 String                 @default("Asia/Kolkata")
+  durationMinutes          Int
+  city                     String?
+  address                  Json?
+  meetingUrl               String?
+  priceAmount              Decimal                @db.Decimal(12, 2)
+  platformFeeAmount        Decimal                @default(0) @db.Decimal(12, 2)
+  tutorEarningsAmount      Decimal                @default(0) @db.Decimal(12, 2)
+  currency                 String                 @default("INR")
+  cancellationReason       String?
+  acceptedAt               DateTime?
+  rejectedAt               DateTime?
+  cancelledAt              DateTime?
+  completedAt              DateTime?
+  createdAt                DateTime               @default(now())
+  updatedAt                DateTime               @updatedAt
+  rescheduledFromBookingId String?
+  aiRuns                   AiRun[]
+  assignments              Assignment[]
+  attendance               Attendance?
+  availabilitySlot         TutorAvailabilitySlot? @relation("BookingAvailabilitySlot", fields: [availabilitySlotId], references: [id])
+  parent                   Parent                 @relation(fields: [parentId], references: [id])
+  Booking                  Booking?               @relation("BookingToBooking", fields: [rescheduledFromBookingId], references: [id])
+  other_Booking            Booking[]              @relation("BookingToBooking")
+  student                  Student                @relation(fields: [studentId], references: [id])
+  subject                  Subject                @relation(fields: [subjectId], references: [id])
+  tutor                    Tutor                  @relation(fields: [tutorId], references: [id])
+  tutorSubject             TutorSubject?          @relation(fields: [tutorSubjectId], references: [id])
+  statusHistory            BookingStatusHistory[]
+  conversation             Conversation?
+  couponRedemptions        CouponRedemption[]
+  homework                 Homework[]
+  ledgerEntries            LedgerEntry[]
+  payments                 Payment[]
+  refunds                  Refund[]
+  reviews                  Review[]
+
+  @@index([parentId, status])
+  @@index([studentId, startAt])
+  @@index([tutorId, startAt])
+  @@index([subjectId])
+  @@index([status, startAt])
+  @@index([serviceMode])
+}
+
+model BookingStatusHistory {
+  id              String         @id @default(cuid())
+  bookingId       String
+  fromStatus      BookingStatus?
+  toStatus        BookingStatus
+  changedByUserId String?
+  reason          String?
+  metadata        Json?
+  createdAt       DateTime       @default(now())
+  booking         Booking        @relation(fields: [bookingId], references: [id])
+  changedBy       User?          @relation("BookingStatusChangedBy", fields: [changedByUserId], references: [id])
+
+  @@index([bookingId, createdAt])
+  @@index([toStatus])
+}
+
+model Payment {
+  id                String                @id @default(cuid())
+  bookingId         String
+  parentId          String
+  provider          PaymentProvider
+  status            PaymentStatus         @default(PENDING)
+  amount            Decimal               @db.Decimal(12, 2)
+  platformFeeAmount Decimal               @default(0) @db.Decimal(12, 2)
+  currency          String                @default("INR")
+  providerOrderId   String?               @unique
+  providerPaymentId String?               @unique
+  idempotencyKey    String?               @unique
+  authorizedAt      DateTime?
+  capturedAt        DateTime?
+  failedAt          DateTime?
+  metadata          Json?
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  couponRedemptions CouponRedemption[]
+  ledgerEntries     LedgerEntry[]
+  booking           Booking               @relation(fields: [bookingId], references: [id])
+  parent            Parent                @relation(fields: [parentId], references: [id])
+  transactions      PaymentTransaction[]
+  webhookEvents     PaymentWebhookEvent[]
+  refunds           Refund[]
+
+  @@index([bookingId])
+  @@index([parentId])
+  @@index([provider, status])
+  @@index([createdAt])
+}
+
+model PaymentTransaction {
+  id              String          @id @default(cuid())
+  paymentId       String
+  provider        PaymentProvider
+  providerEventId String?
+  eventType       String
+  status          PaymentStatus
+  amount          Decimal?        @db.Decimal(12, 2)
+  payload         Json?
+  processedAt     DateTime?
+  createdAt       DateTime        @default(now())
+  payment         Payment         @relation(fields: [paymentId], references: [id])
+
+  @@unique([provider, providerEventId])
+  @@index([paymentId])
+  @@index([status])
+}
+
+model PaymentWebhookEvent {
+  id              String             @id @default(cuid())
+  paymentId       String?
+  provider        PaymentProvider
+  providerEventId String             @unique
+  eventType       String
+  status          PaymentEventStatus @default(RECEIVED)
+  payload         Json
+  receivedAt      DateTime           @default(now())
+  processedAt     DateTime?
+  errorMessage    String?
+  payment         Payment?           @relation(fields: [paymentId], references: [id])
+
+  @@index([provider, eventType])
+  @@index([status])
+  @@index([receivedAt])
+}
+
+model Refund {
+  id                String       @id @default(cuid())
+  paymentId         String
+  bookingId         String
+  requestedByUserId String?
+  approvedByUserId  String?
+  status            RefundStatus @default(REQUESTED)
+  amount            Decimal      @db.Decimal(12, 2)
+  currency          String       @default("INR")
+  reason            String?
+  providerRefundId  String?      @unique
+  processedAt       DateTime?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  approvedBy        User?        @relation("RefundApprovedBy", fields: [approvedByUserId], references: [id])
+  booking           Booking      @relation(fields: [bookingId], references: [id])
+  payment           Payment      @relation(fields: [paymentId], references: [id])
+  requestedBy       User?        @relation("RefundRequestedBy", fields: [requestedByUserId], references: [id])
+
+  @@index([paymentId])
+  @@index([bookingId])
+  @@index([status])
+}
+
+model Wallet {
+  id               String        @id @default(cuid())
+  tutorId          String        @unique
+  status           WalletStatus  @default(ACTIVE)
+  currency         String        @default("INR")
+  availableBalance Decimal       @default(0) @db.Decimal(12, 2)
+  pendingBalance   Decimal       @default(0) @db.Decimal(12, 2)
+  lifetimeEarnings Decimal       @default(0) @db.Decimal(12, 2)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  ledgerEntries    LedgerEntry[]
+  tutor            Tutor         @relation(fields: [tutorId], references: [id])
+  withdrawals      Withdrawal[]
+}
+
+model LedgerEntry {
+  id             String            @id @default(cuid())
+  walletId       String
+  tutorId        String
+  paymentId      String?
+  bookingId      String?
+  type           LedgerEntryType
+  status         LedgerEntryStatus @default(PENDING)
+  amount         Decimal           @db.Decimal(12, 2)
+  currency       String            @default("INR")
+  description    String?
+  idempotencyKey String?           @unique
+  availableAt    DateTime?
+  postedAt       DateTime?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  booking        Booking?          @relation(fields: [bookingId], references: [id])
+  payment        Payment?          @relation(fields: [paymentId], references: [id])
+  tutor          Tutor             @relation(fields: [tutorId], references: [id])
+  wallet         Wallet            @relation(fields: [walletId], references: [id])
+
+  @@index([walletId, createdAt])
+  @@index([tutorId])
+  @@index([paymentId])
+  @@index([bookingId])
+  @@index([status])
+}
+
+model Withdrawal {
+  id                 String           @id @default(cuid())
+  walletId           String
+  tutorId            String
+  status             WithdrawalStatus @default(REQUESTED)
+  amount             Decimal          @db.Decimal(12, 2)
+  currency           String           @default("INR")
+  payoutProvider     String?
+  providerTransferId String?          @unique
+  requestedAt        DateTime         @default(now())
+  processedAt        DateTime?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  tutor              Tutor            @relation(fields: [tutorId], references: [id])
+  wallet             Wallet           @relation(fields: [walletId], references: [id])
+
+  @@index([walletId])
+  @@index([tutorId])
+  @@index([status])
+}
+
+model Attendance {
+  id              String           @id @default(cuid())
+  bookingId       String           @unique
+  studentId       String
+  tutorId         String
+  status          AttendanceStatus @default(PENDING)
+  checkInOtpHash  String?
+  checkOutOtpHash String?
+  checkedInAt     DateTime?
+  checkedOutAt    DateTime?
+  markedByUserId  String?
+  notes           String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  booking         Booking          @relation(fields: [bookingId], references: [id])
+  markedBy        User?            @relation("AttendanceMarkedBy", fields: [markedByUserId], references: [id])
+  student         Student          @relation(fields: [studentId], references: [id])
+  tutor           Tutor            @relation(fields: [tutorId], references: [id])
+
+  @@index([studentId])
+  @@index([tutorId])
+  @@index([status])
+}
+
+model Homework {
+  id           String               @id @default(cuid())
+  bookingId    String?
+  studentId    String
+  tutorId      String
+  subjectId    String
+  title        String
+  instructions String?
+  status       HomeworkStatus       @default(ASSIGNED)
+  dueAt        DateTime?
+  assignedAt   DateTime             @default(now())
+  reviewedAt   DateTime?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  booking      Booking?             @relation(fields: [bookingId], references: [id])
+  student      Student              @relation(fields: [studentId], references: [id])
+  subject      Subject              @relation(fields: [subjectId], references: [id])
+  tutor        Tutor                @relation(fields: [tutorId], references: [id])
+  submissions  HomeworkSubmission[]
+
+  @@index([studentId, status])
+  @@index([tutorId])
+  @@index([subjectId])
+  @@index([dueAt])
+}
+
+model HomeworkSubmission {
+  id                String                   @id @default(cuid())
+  homeworkId        String
+  studentId         String
+  submittedByUserId String?
+  status            HomeworkSubmissionStatus @default(SUBMITTED)
+  content           String?
+  attachmentFileKey String?
+  submittedAt       DateTime                 @default(now())
+  reviewedAt        DateTime?
+  feedback          String?
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+  homework          Homework                 @relation(fields: [homeworkId], references: [id])
+  student           Student                  @relation(fields: [studentId], references: [id])
+  submittedBy       User?                    @relation("HomeworkSubmittedBy", fields: [submittedByUserId], references: [id])
+
+  @@index([homeworkId])
+  @@index([studentId])
+  @@index([status])
+}
+
+model Assignment {
+  id           String                 @id @default(cuid())
+  bookingId    String?
+  studentId    String
+  tutorId      String
+  subjectId    String
+  type         AssignmentType
+  title        String
+  instructions String?
+  status       AssignmentStatus       @default(ASSIGNED)
+  dueAt        DateTime?
+  assignedAt   DateTime               @default(now())
+  reviewedAt   DateTime?
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+  booking      Booking?               @relation(fields: [bookingId], references: [id])
+  student      Student                @relation(fields: [studentId], references: [id])
+  subject      Subject                @relation(fields: [subjectId], references: [id])
+  tutor        Tutor                  @relation(fields: [tutorId], references: [id])
+  submissions  AssignmentSubmission[]
+
+  @@index([studentId, status])
+  @@index([tutorId])
+  @@index([subjectId])
+  @@index([dueAt])
+}
+
+model AssignmentSubmission {
+  id                String           @id @default(cuid())
+  assignmentId      String
+  studentId         String
+  submittedByUserId String?
+  status            AssignmentStatus @default(SUBMITTED)
+  content           String?
+  attachmentFileKey String?
+  score             Decimal?         @db.Decimal(5, 2)
+  submittedAt       DateTime         @default(now())
+  reviewedAt        DateTime?
+  feedback          String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  assignment        Assignment       @relation(fields: [assignmentId], references: [id])
+  student           Student          @relation(fields: [studentId], references: [id])
+  submittedBy       User?            @relation("AssignmentSubmittedBy", fields: [submittedByUserId], references: [id])
+
+  @@index([assignmentId])
+  @@index([studentId])
+  @@index([status])
+}
+
+model ProgressReport {
+  id                String    @id @default(cuid())
+  studentId         String
+  tutorId           String?
+  subjectId         String?
+  generatedByUserId String?
+  periodStart       DateTime
+  periodEnd         DateTime
+  summary           String
+  strengths         String?
+  improvementAreas  String?
+  parentVisibleAt   DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  generatedBy       User?     @relation("ProgressReportGeneratedBy", fields: [generatedByUserId], references: [id])
+  student           Student   @relation(fields: [studentId], references: [id])
+  subject           Subject?  @relation(fields: [subjectId], references: [id])
+  tutor             Tutor?    @relation(fields: [tutorId], references: [id])
+
+  @@index([studentId, periodStart, periodEnd])
+  @@index([tutorId])
+  @@index([subjectId])
+}
+
+model Review {
+  id                String       @id @default(cuid())
+  bookingId         String
+  parentId          String
+  studentId         String
+  tutorId           String
+  rating            Int
+  title             String?
+  comment           String?
+  status            ReviewStatus @default(PENDING_MODERATION)
+  moderatedByUserId String?
+  moderatedAt       DateTime?
+  submittedAt       DateTime     @default(now())
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  booking           Booking      @relation(fields: [bookingId], references: [id])
+  moderatedBy       User?        @relation("ReviewModeratedBy", fields: [moderatedByUserId], references: [id])
+  parent            Parent       @relation(fields: [parentId], references: [id])
+  student           Student      @relation(fields: [studentId], references: [id])
+  tutor             Tutor        @relation(fields: [tutorId], references: [id])
+
+  @@unique([bookingId, parentId])
+  @@index([tutorId, status])
+  @@index([rating])
+}
+
+model Conversation {
+  id            String             @id @default(cuid())
+  bookingId     String?            @unique
+  parentId      String
+  tutorId       String
+  status        ConversationStatus @default(ACTIVE)
+  lastMessageAt DateTime?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  booking       Booking?           @relation(fields: [bookingId], references: [id])
+  parent        Parent             @relation(fields: [parentId], references: [id])
+  tutor         Tutor              @relation(fields: [tutorId], references: [id])
+  messages      Message[]
+
+  @@index([parentId])
+  @@index([tutorId])
+  @@index([status])
+}
+
+model Message {
+  id                String        @id @default(cuid())
+  conversationId    String
+  senderUserId      String
+  status            MessageStatus @default(SENT)
+  body              String?
+  attachmentFileKey String?
+  sentAt            DateTime      @default(now())
+  readAt            DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  conversation      Conversation  @relation(fields: [conversationId], references: [id])
+  sender            User          @relation("MessageSender", fields: [senderUserId], references: [id])
+
+  @@index([conversationId, sentAt])
+  @@index([senderUserId])
+  @@index([status])
+}
+
+model Notification {
+  id                String              @id @default(cuid())
+  userId            String
+  channel           NotificationChannel
+  status            NotificationStatus  @default(QUEUED)
+  title             String
+  body              String
+  data              Json?
+  scheduledAt       DateTime?
+  sentAt            DateTime?
+  readAt            DateTime?
+  providerMessageId String?
+  failureReason     String?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  provider          String?
+  eventName         String?
+  templateId        String?
+  locale            String              @default("en-IN")
+  recipient         String?
+  idempotencyKey    String?             @unique
+  correlationId     String?
+  attempts          Int                 @default(0)
+  nextAttemptAt     DateTime?
+  lastError         String?
+  user              User                @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+  @@index([channel, status])
+  @@index([status, nextAttemptAt])
+  @@index([eventName, correlationId])
+  @@index([scheduledAt])
+}
+
+model NotificationTemplate {
+  id            String              @id @default(cuid())
+  eventName     String
+  channel       NotificationChannel
+  locale        String              @default("en-IN")
+  titleTemplate String
+  bodyTemplate  String
+  variables     String[]            @default([])
+  version       Int                 @default(1)
+  isActive      Boolean             @default(true)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  @@unique([eventName, channel, locale, version])
+  @@index([eventName, channel, locale])
+}
+
+model NotificationPreference {
+  id        String              @id @default(cuid())
+  userId    String
+  channel   NotificationChannel
+  category  String
+  enabled   Boolean             @default(true)
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+  user      User                @relation(fields: [userId], references: [id])
+
+  @@unique([userId, channel, category])
+  @@index([userId])
+}
+
+model Coupon {
+  id                String             @id @default(cuid())
+  code              String             @unique
+  status            CouponStatus       @default(DRAFT)
+  discountType      CouponDiscountType
+  discountValue     Decimal            @db.Decimal(12, 2)
+  maxDiscountAmount Decimal?           @db.Decimal(12, 2)
+  minOrderAmount    Decimal?           @db.Decimal(12, 2)
+  currency          String             @default("INR")
+  startsAt          DateTime?
+  expiresAt         DateTime?
+  usageLimit        Int?
+  perUserLimit      Int?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  redemptions       CouponRedemption[]
+
+  @@index([status])
+  @@index([startsAt, expiresAt])
+}
+
+model CouponRedemption {
+  id               String   @id @default(cuid())
+  couponId         String
+  userId           String
+  bookingId        String?
+  paymentId        String?
+  amountDiscounted Decimal  @db.Decimal(12, 2)
+  redeemedAt       DateTime @default(now())
+  createdAt        DateTime @default(now())
+  booking          Booking? @relation(fields: [bookingId], references: [id])
+  coupon           Coupon   @relation(fields: [couponId], references: [id])
+  payment          Payment? @relation(fields: [paymentId], references: [id])
+  user             User     @relation(fields: [userId], references: [id])
+
+  @@unique([couponId, userId, bookingId])
+  @@index([userId])
+  @@index([bookingId])
+}
+
+model Referral {
+  id               String         @id @default(cuid())
+  referrerParentId String?
+  referredUserId   String?
+  code             String         @unique
+  status           ReferralStatus @default(INVITED)
+  invitedEmail     String?
+  invitedPhone     String?
+  rewardAmount     Decimal?       @db.Decimal(12, 2)
+  convertedAt      DateTime?
+  rewardedAt       DateTime?
+  expiresAt        DateTime?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  referredUser     User?          @relation("ReferralReferredUser", fields: [referredUserId], references: [id])
+  referrerParent   Parent?        @relation("ReferralReferrerParent", fields: [referrerParentId], references: [id])
+
+  @@index([referrerParentId])
+  @@index([referredUserId])
+  @@index([status])
+}
+
+model AnalyticsEvent {
+  id          String             @id @default(cuid())
+  eventName   String
+  actorType   AnalyticsActorType
+  userId      String?
+  anonymousId String?
+  sessionId   String?
+  properties  Json?
+  occurredAt  DateTime           @default(now())
+  createdAt   DateTime           @default(now())
+  user        User?              @relation(fields: [userId], references: [id])
+
+  @@index([eventName, occurredAt])
+  @@index([userId, occurredAt])
+  @@index([actorType])
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  actorUserId String?
+  action      String
+  entityType  String
+  entityId    String?
+  ipAddress   String?
+  userAgent   String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+  actor       User?    @relation("AuditActor", fields: [actorUserId], references: [id])
+
+  @@index([actorUserId, createdAt])
+  @@index([entityType, entityId])
+  @@index([action])
+}
+
+model OutboxEvent {
+  id            String       @id @default(cuid())
+  eventName     String
+  aggregateType String
+  aggregateId   String
+  payload       Json
+  status        OutboxStatus @default(PENDING)
+  attempts      Int          @default(0)
+  nextAttemptAt DateTime?
+  processedAt   DateTime?
+  errorMessage  String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([status, nextAttemptAt])
+  @@index([aggregateType, aggregateId])
+  @@index([eventName])
+}
+
+model AiRun {
+  id                String      @id @default(cuid())
+  feature           String
+  status            AiRunStatus @default(QUEUED)
+  requestedByUserId String?
+  studentId         String?
+  tutorId           String?
+  bookingId         String?
+  modelName         String?
+  input             Json
+  output            Json?
+  errorMessage      String?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  completedAt       DateTime?
+  booking           Booking?    @relation(fields: [bookingId], references: [id])
+  requestedBy       User?       @relation("AiRunRequestedBy", fields: [requestedByUserId], references: [id])
+  student           Student?    @relation(fields: [studentId], references: [id])
+  tutor             Tutor?      @relation(fields: [tutorId], references: [id])
+
+  @@index([feature, status])
+  @@index([studentId])
+  @@index([tutorId])
+  @@index([bookingId])
+}
+
+model FeatureFlag {
+  id                String            @id @default(cuid())
+  key               String            @unique
+  status            FeatureFlagStatus @default(DISABLED)
+  description       String?
+  rolloutPercentage Int               @default(0)
+  rules             Json?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([status])
+}
+
+model SupportTicket {
+  id               String                 @id @default(cuid())
+  publicId         String                 @unique @default(uuid())
+  openedByUserId   String
+  assignedToUserId String?
+  status           SupportTicketStatus    @default(OPEN)
+  priority         SupportTicketPriority  @default(NORMAL)
+  subject          String
+  description      String?
+  entityType       String?
+  entityId         String?
+  resolvedAt       DateTime?
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  assignedTo       User?                  @relation("SupportTicketAssignedTo", fields: [assignedToUserId], references: [id])
+  openedBy         User                   @relation("SupportTicketOpenedBy", fields: [openedByUserId], references: [id])
+  messages         SupportTicketMessage[]
+
+  @@index([status, priority])
+  @@index([openedByUserId])
+  @@index([assignedToUserId])
+  @@index([entityType, entityId])
+}
+
+model SupportTicketMessage {
+  id           String        @id @default(cuid())
+  ticketId     String
+  senderUserId String
+  body         String
+  isInternal   Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  sender       User          @relation("SupportTicketMessageSender", fields: [senderUserId], references: [id])
+  ticket       SupportTicket @relation(fields: [ticketId], references: [id])
+
+  @@index([ticketId, createdAt])
+  @@index([senderUserId])
+}
+
+model TutorLanguage {
+  id          String   @id @default(cuid())
+  tutorId     String
+  language    String
+  proficiency String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tutor       Tutor    @relation(fields: [tutorId], references: [id])
+
+  @@unique([tutorId, language])
+  @@index([tutorId])
+}
+
+enum UserRole {
+  PARENT
+  STUDENT
+  TUTOR
+  ADMIN
+  SUPPORT
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  DEACTIVATED
+  DELETED
+}
+
+enum AuthProviderType {
+  PASSWORD
+  OTP
+  GOOGLE
+  APPLE
+}
+
+enum OtpPurpose {
+  LOGIN
+  SIGNUP
+  PHONE_VERIFICATION
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+enum Gender {
+  FEMALE
+  MALE
+  NON_BINARY
+  PREFER_NOT_TO_SAY
+}
+
+enum Curriculum {
+  CBSE
+  ICSE
+  IGCSE
+  IB
+  STATE_BOARD
+  OTHER
+}
+
+enum SubjectCategory {
+  ACADEMIC
+  COMPETITIVE
+  SKILLS
+  CREATIVE
+  SPORTS
+  LANGUAGES
+}
+
+enum ServiceMode {
+  ONLINE
+  HOME_TUITION
+  GROUP_CLASS
+  WEEKEND_CLASS
+  HOLIDAY_CAMP
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum ClassType {
+  TRIAL
+  REGULAR
+  PACKAGE
+  RECURRING
+}
+
+enum TutorStatus {
+  DRAFT
+  PENDING_VERIFICATION
+  CHANGES_REQUESTED
+  ACTIVE
+  REJECTED
+  SUSPENDED
+  DEACTIVATED
+}
+
+enum InstituteStatus {
+  DRAFT
+  ACTIVE
+  SUSPENDED
+  DEACTIVATED
+}
+
+enum VerificationType {
+  GOVERNMENT_ID
+  DEGREE
+  EXPERIENCE
+  POLICE
+  BACKGROUND_CHECK
+  ADDRESS
+  REFERENCE
+}
+
+enum VerificationStatus {
+  NOT_SUBMITTED
+  SUBMITTED
+  UNDER_REVIEW
+  CHANGES_REQUESTED
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+enum DocumentStatus {
+  UPLOADED
+  VERIFIED
+  REJECTED
+  EXPIRED
+}
+
+enum AvailabilitySlotStatus {
+  AVAILABLE
+  RESERVED
+  BOOKED
+  BLOCKED
+  EXPIRED
+}
+
+enum BookingStatus {
+  DRAFT
+  PENDING_PAYMENT
+  PAYMENT_AUTHORIZED
+  REQUESTED
+  ACCEPTED
+  REJECTED
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  REVIEWED
+  CANCELLED_BY_PARENT
+  CANCELLED_BY_TUTOR
+  CANCELLED_BY_ADMIN
+  EXPIRED
+  NO_SHOW
+  DISPUTED
+  REFUNDED
+  RESCHEDULED
+}
+
+enum PaymentProvider {
+  RAZORPAY
+  STRIPE
+  MANUAL
+}
+
+enum PaymentStatus {
+  PENDING
+  AUTHORIZED
+  CAPTURED
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum PaymentEventStatus {
+  RECEIVED
+  PROCESSED
+  FAILED
+  IGNORED
+}
+
+enum RefundStatus {
+  REQUESTED
+  APPROVED
+  PROCESSING
+  PROCESSED
+  FAILED
+  REJECTED
+}
+
+enum WalletStatus {
+  ACTIVE
+  FROZEN
+  CLOSED
+}
+
+enum LedgerEntryType {
+  HOLD
+  CREDIT
+  DEBIT
+  COMMISSION
+  REFUND
+  WITHDRAWAL
+  ADJUSTMENT
+}
+
+enum LedgerEntryStatus {
+  PENDING
+  POSTED
+  VOIDED
+}
+
+enum WithdrawalStatus {
+  REQUESTED
+  APPROVED
+  PROCESSING
+  PAID
+  FAILED
+  REJECTED
+}
+
+enum AttendanceStatus {
+  PENDING
+  PRESENT
+  ABSENT
+  LATE
+  NO_SHOW
+  EXCUSED
+}
+
+enum HomeworkStatus {
+  ASSIGNED
+  SUBMITTED
+  REVIEWED
+  CANCELLED
+}
+
+enum HomeworkSubmissionStatus {
+  SUBMITTED
+  REVIEWED
+  RETURNED
+}
+
+enum AssignmentType {
+  WORKSHEET
+  QUIZ
+  PROJECT
+  PRACTICE
+  READING
+}
+
+enum AssignmentStatus {
+  ASSIGNED
+  SUBMITTED
+  REVIEWED
+  CANCELLED
+}
+
+enum ReviewStatus {
+  PENDING_MODERATION
+  PUBLISHED
+  HIDDEN
+  FLAGGED
+}
+
+enum ConversationStatus {
+  ACTIVE
+  CLOSED
+  FLAGGED
+}
+
+enum MessageStatus {
+  SENT
+  DELIVERED
+  READ
+  FLAGGED
+  DELETED
+}
+
+enum NotificationChannel {
+  PUSH
+  EMAIL
+  SMS
+  WHATSAPP
+  IN_APP
+}
+
+enum NotificationStatus {
+  QUEUED
+  SENT
+  FAILED
+  READ
+  CANCELLED
+  DEAD_LETTER
+}
+
+enum CouponStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  EXPIRED
+  ARCHIVED
+}
+
+enum CouponDiscountType {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+enum ReferralStatus {
+  INVITED
+  SIGNED_UP
+  CONVERTED
+  REWARDED
+  EXPIRED
+}
+
+enum AnalyticsActorType {
+  ANONYMOUS
+  PARENT
+  STUDENT
+  TUTOR
+  ADMIN
+  SYSTEM
+}
+
+enum OutboxStatus {
+  PENDING
+  PROCESSING
+  PROCESSED
+  FAILED
+  DEAD_LETTER
+}
+
+enum AiRunStatus {
+  QUEUED
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum FeatureFlagStatus {
+  ENABLED
+  DISABLED
+}
+
+enum SupportTicketStatus {
+  OPEN
+  PENDING
+  RESOLVED
+  CLOSED
+}
+
+enum SupportTicketPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}

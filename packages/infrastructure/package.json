@@ -1,0 +1,24 @@
+{
+  "name": "@tutor-marketplace/infrastructure",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@tutor-marketplace/application": "workspace:*",
+    "@tutor-marketplace/config": "workspace:*",
+    "@tutor-marketplace/domain": "workspace:*",
+    "@tutor-marketplace/database": "workspace:*",
+    "razorpay": "2.9.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.14.1",
+    "typescript": "5.8.3",
+    "vitest": "3.1.1"
+  }
+}

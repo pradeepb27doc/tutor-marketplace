@@ -1,0 +1,51 @@
+{
+  "name": "tutor-marketplace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "India-first tutor marketplace monorepo.",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@prisma/client",
+      "@prisma/engines",
+      "esbuild",
+      "prisma",
+      "sharp"
+    ]
+  },
+  "scripts": {
+    "verify:structure": "node tools/verify-structure.mjs",
+    "verify:schema": "node tools/verify-prisma-schema.mjs",
+    "verify:api-spec": "node tools/verify-api-spec.mjs",
+    "verify": "node tools/verify-workspace.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "test:domain": "vitest run --project domain",
+    "test:config": "vitest run --project config",
+    "test:application": "vitest run --project application",
+    "test:infrastructure": "vitest run --project infrastructure",
+    "test:database": "vitest run --project database",
+    "test:api": "vitest run --project api",
+    "test:worker": "vitest run --project worker",
+    "dev:api": "pnpm --filter @tutor-marketplace/api dev",
+    "dev:worker": "pnpm --filter @tutor-marketplace/worker dev",
+    "dev:mobile": "pnpm --filter @tutor-marketplace/mobile dev",
+    "dev:admin": "pnpm --filter @tutor-marketplace/admin dev",
+    "typecheck": "pnpm -r exec tsc --noEmit",
+    "lint": "pnpm -r exec eslint src --ext .ts,.tsx",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,md}\""
+  },
+  "devDependencies": {
+    "@types/node": "22.14.1",
+    "prettier": "3.5.3",
+    "typescript": "5.8.3",
+    "vitest": "3.1.1"
+  }
+}

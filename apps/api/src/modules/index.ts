@@ -1,0 +1,11 @@
+export { AuthModule } from "./auth/auth.module.js";
+export { ProfilesModule } from "./profiles/profiles.module.js";
+export { CatalogModule } from "./catalog/catalog.module.js";
+export { TutorsModule } from "./tutors/tutors.module.js";
+export { VerificationModule } from "./verification/verification.module.js";
+export { SearchModule } from "./search/search.module.js";
+export { BookingsModule } from "./bookings/bookings.module.js";
+export { PaymentsModule } from "./payments/payments.module.js";
+export { NotificationsModule } from "./notifications/notifications.module.js";
+export { ReviewsModule } from "./reviews/reviews.module.js";
+export { AdminModule } from "./admin/admin.module.js";

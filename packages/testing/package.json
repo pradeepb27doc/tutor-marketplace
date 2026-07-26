@@ -1,0 +1,22 @@
+{
+  "name": "@tutor-marketplace/testing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tutor-marketplace/application": "workspace:*",
+    "@tutor-marketplace/config": "workspace:*",
+    "@tutor-marketplace/database": "workspace:*",
+    "@tutor-marketplace/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "22.14.1",
+    "typescript": "5.8.3",
+    "vitest": "3.1.1"
+  }
+}

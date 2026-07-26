@@ -1,0 +1,14 @@
+﻿apps/api/src/modules/notifications/dto/register-device.dto.ts(7,3): error TS2564: Property 'platform' has no initializer and is not definitely assigned in the constructor.
+apps/api/src/modules/notifications/dto/register-device.dto.ts(11,3): error TS2564: Property 'pushToken' has no initializer and is not definitely assigned in the constructor.
+apps/api/src/modules/notifications/dto/register-device.dto.ts(18,3): error TS2564: Property 'channel' has no initializer and is not definitely assigned in the constructor.
+apps/api/src/modules/notifications/dto/register-device.dto.ts(23,3): error TS2564: Property 'category' has no initializer and is not definitely assigned in the constructor.
+apps/api/src/modules/notifications/dto/register-device.dto.ts(26,3): error TS2564: Property 'enabled' has no initializer and is not definitely assigned in the constructor.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(14,3): error TS2724: '"@tutor-marketplace/application"' has no exported member named 'CreateOutboxEventRecord'. Did you mean 'OutboxEventRecord'?
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(33,9): error TS2322: Type 'string' is not assignable to type 'NotificationChannel'.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(34,24): error TS2339: Property 'provider' does not exist on type 'CreateNotificationRecord'.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(35,9): error TS2322: Type 'string' is not assignable to type 'NotificationStatus | undefined'.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(107,9): error TS2322: Type 'string' is not assignable to type 'NotificationStatus | EnumNotificationStatusFieldUpdateOperationsInput | undefined'.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(142,27): error TS2322: Type 'string' is not assignable to type 'NotificationChannel | EnumNotificationChannelFilter<"NotificationTemplate"> | undefined'.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(163,51): error TS2322: Type 'string' is not assignable to type 'NotificationChannel'.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(173,11): error TS2322: Type 'string' is not assignable to type 'NotificationChannel'.
+packages/infrastructure/src/repositories/prisma-notification.repository.ts(179,9): error TS2322: Type 'string' is not assignable to type 'NotificationChannel'.

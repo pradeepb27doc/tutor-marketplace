@@ -1,0 +1,2774 @@
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.onlyBuiltDependencies". See https://pnpm.io/settings for the new home of each setting.
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.onlyBuiltDependencies". See https://pnpm.io/settings for the new home of each setting.
+$ vitest run
+
+ RUN  v3.1.1 /home/pradeep270820/projects/New Project
+
+ ✓ |application| src/reviews/review.use-cases.test.ts (25 tests) 8ms
+ ✓ |application| src/notifications/notification.use-cases.test.ts (22 tests) 11ms
+ ✓ |application| src/bookings/booking.use-cases.test.ts (15 tests) 15ms
+ ✓ |application| src/admin/admin.use-cases.test.ts (18 tests) 14ms
+ ✓ |application| src/tutors/availability.use-cases.test.ts (20 tests) 10ms
+ ✓ |application| src/payments/payment.use-cases.test.ts (18 tests) 35ms
+ ✓ |application| src/auth/otp-verify.use-case.test.ts (8 tests) 16ms
+ ✓ |application| src/profiles/update-student.use-case.test.ts (5 tests) 5ms
+ ✓ |application| src/tutors/tutor-subject.use-cases.test.ts (8 tests) 4ms
+ ✓ |application| src/auth/otp-start.use-case.test.ts (7 tests) 17ms
+ ✓ |application| src/auth/login.use-case.test.ts (6 tests) 10ms
+ ✓ |application| src/tutors/verification.use-cases.test.ts (12 tests) 6ms
+ ✓ |application| src/profiles/get-student.use-case.test.ts (5 tests) 6ms
+ ✓ |application| src/auth/refresh-token.use-case.test.ts (5 tests) 6ms
+ ✓ |application| src/auth/errors.test.ts (11 tests) 5ms
+ ✓ |application| src/profiles/delete-student.use-case.test.ts (4 tests) 5ms
+ ✓ |application| src/search/get-tutor-detail.use-case.test.ts (4 tests) 4ms
+ ✓ |application| src/profiles/create-student.use-case.test.ts (3 tests) 9ms
+ ✓ |application| src/tutors/qualification.use-cases.test.ts (7 tests) 4ms
+ ✓ |application| src/tutors/get-tutor-profile.use-case.test.ts (4 tests) 12ms
+ ✓ |application| src/profiles/list-students.use-case.test.ts (3 tests) 6ms
+ ✓ |application| src/search/search-tutors.use-case.test.ts (6 tests) 4ms
+ ✓ |application| src/tutors/language.use-cases.test.ts (6 tests) 11ms
+ ✓ |application| src/auth/get-current-user.use-case.test.ts (2 tests) 5ms
+ ✓ |application| src/tutors/service-area.use-cases.test.ts (5 tests) 7ms
+ ✓ |application| src/auth/list-sessions.use-case.test.ts (2 tests) 6ms
+ ✓ |application| src/auth/revoke-session.use-case.test.ts (3 tests) 10ms
+ ✓ |application| src/auth/logout.use-case.test.ts (3 tests) 7ms
+ ✓ |application| src/tutors/update-tutor-profile.use-case.test.ts (3 tests) 4ms
+ ✓ |infrastructure| src/auth/jwt-auth.service.test.ts (7 tests) 5ms
+ ✓ |application| src/tutors/create-tutor-profile.use-case.test.ts (3 tests) 4ms
+ ✓ |application| src/tutors/dashboard.use-case.test.ts (2 tests) 4ms
+ ✓ |application| src/profiles/get-parent-profile.use-case.test.ts (2 tests) 5ms
+ ✓ |application| src/profiles/update-parent-profile.use-case.test.ts (2 tests) 6ms
+ ✓ |infrastructure| src/auth/otp-code.service.test.ts (6 tests) 9ms
+ ✓ |infrastructure| src/auth/logging-otp-sender.test.ts (2 tests) 4ms
+ ✓ |application| src/auth/logout-all.use-case.test.ts (1 test) 3ms
+ ✓ |infrastructure| src/auth/system-clock.test.ts (2 tests) 2ms
+ ✓ |infrastructure| src/auth/bcrypt-password.service.test.ts (4 tests) 355ms
+stdout | src/repositories/prisma-repository.integration.test.ts
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should create and find a user by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should find a user by email
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should find a user by phone
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should update a user
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should enforce unique email constraint
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should enforce unique email constraint
+prisma:error 
+Invalid `this.db.user.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-user.repository.ts:35:37
+
+  32 }
+  33 
+  34 async create(data: CreateUserRecord): Promise<UserRecord> {
+→ 35   const user = await this.db.user.create(
+Unique constraint failed on the fields: (`email`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should return null for non-existent user
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRepository (Integration) > should return null on findByEmail for non-existent
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOtpChallengeRepository (Integration) > should create and find an OTP challenge by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOtpChallengeRepository (Integration) > should mark consumed
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOtpChallengeRepository (Integration) > should increment attempts
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSessionRepository (Integration) > should create and find a session by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSessionRepository (Integration) > should find by refresh token hash
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSessionRepository (Integration) > should list sessions by userId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSessionRepository (Integration) > should revoke a session
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSessionRepository (Integration) > should revoke all sessions by userId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSessionRepository (Integration) > should enforce unique refreshTokenHash constraint
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSessionRepository (Integration) > should enforce unique refreshTokenHash constraint
+prisma:error 
+Invalid `this.db.userSession.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-session.repository.ts:14:47
+
+  11 }
+  12 
+  13 async create(data: CreateSessionRecord): Promise<SessionRecord> {
+→ 14   const session = await this.db.userSession.create(
+Unique constraint failed on the fields: (`refreshTokenHash`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRoleRepository (Integration) > should assign and find roles
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRoleRepository (Integration) > should enforce unique userId+role constraint
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaUserRoleRepository (Integration) > should enforce unique userId+role constraint
+prisma:error 
+Invalid `this.db.userRoleAssignment.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-user-role.repository.ts:25:62
+
+  22 }
+  23 
+  24 async assignRole(userId: string, role: string): Promise<UserRoleRecord> {
+→ 25   const assignment: any = await this.db.userRoleAssignment.create(
+Unique constraint failed on the fields: (`userId`,`role`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaParentRepository (Integration) > should return null for non-existent parent
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaParentRepository (Integration) > should update parent profile and find it
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaParentRepository (Integration) > should enforce unique userId constraint on parent
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaParentRepository (Integration) > should enforce unique userId constraint on parent
+prisma:error 
+Invalid `prisma.parent.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-repository.integration.test.ts:384:21
+
+  381   data: { userId: parentUserId },
+  382 });
+  383 await expect(
+→ 384   prisma.parent.create(
+Unique constraint failed on the fields: (`userId`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaParentRepository (Integration) > should cascade delete on user delete
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaParentRepository (Integration) > should cascade delete on user delete
+prisma:error 
+Invalid `prisma.user.delete()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-repository.integration.test.ts:398:23
+
+  395 await prisma.parent.create({
+  396   data: { userId: u.id, city: "Cascade City" },
+  397 });
+→ 398 await prisma.user.delete(
+Foreign key constraint violated: `Parent_userId_fkey (index)`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should create and find a student by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should find students by parent id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should verify parent ownership
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should soft delete a student
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should enforce unique userId constraint
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should enforce unique userId constraint
+prisma:error 
+Invalid `prisma.student.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-repository.integration.test.ts:480:22
+
+  477   data: { userId: u.id, fullName: "First" },
+  478 });
+  479 await expect(
+→ 480   prisma.student.create(
+Unique constraint failed on the fields: (`userId`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should enforce unique studentId+parentId constraint on guardian
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaStudentRepository (Integration) > should enforce unique studentId+parentId constraint on guardian
+prisma:error 
+Invalid `this.db.studentGuardian.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-student.repository.ts:83:35
+
+  80 }
+  81 
+  82 async createGuardianLink(studentId: string, parentId: string, relationToChild?: string): Promise<void> {
+→ 83   await this.db.studentGuardian.create(
+Unique constraint failed on the fields: (`studentId`,`parentId`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorRepository (Integration) > should create and find a tutor by userId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorRepository (Integration) > should find a tutor by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorRepository (Integration) > should update a tutor
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorRepository (Integration) > should enforce unique userId constraint on tutor
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorRepository (Integration) > should enforce unique userId constraint on tutor
+prisma:error 
+Invalid `this.db.tutor.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-tutor.repository.ts:26:44
+
+  23 }
+  24 
+  25 async create(data: CreateTutorRecord): Promise<TutorRecord> {
+→ 26   const tutor: any = await this.db.tutor.create(
+Unique constraint failed on the fields: (`userId`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorRepository (Integration) > should return null for non-existent tutor
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorSubjectRepository (Integration) > should create and find a tutor subject
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorSubjectRepository (Integration) > should find by tutorId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorSubjectRepository (Integration) > should find by tutorId and subjectId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorSubjectRepository (Integration) > should soft delete (mark inactive)
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorSearchRepository (Integration) > should search tutors with filters
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorSearchRepository (Integration) > should return empty for non-matching filters
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorWeeklySlotRepository (Integration) > should create and find weekly slots
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorWeeklySlotRepository (Integration) > should find overlapping slots
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorWeeklySlotRepository (Integration) > should update a weekly slot
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorWeeklySlotRepository (Integration) > should delete a weekly slot
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorWeeklySlotRepository (Integration) > should enforce unique constraint on tutorId+dayOfWeek+startTime+serviceMode
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorWeeklySlotRepository (Integration) > should enforce unique constraint on tutorId+dayOfWeek+startTime+serviceMode
+prisma:error 
+Invalid `this.db.tutorWeeklySlot.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-tutor-weekly-slot.repository.ts:46:55
+
+  43 }
+  44 
+  45 async create(data: CreateTutorWeeklySlotRecord): Promise<TutorWeeklySlotRecord> {
+→ 46   const record: any = await this.db.tutorWeeklySlot.create(
+Unique constraint failed on the fields: (`tutorId`,`dayOfWeek`,`startTime`,`serviceMode`)
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorBreakPeriodRepository (Integration) > should create and find break periods
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorBreakPeriodRepository (Integration) > should delete a break period
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorBlackoutRepository (Integration) > should create and find blackout periods
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorBlackoutRepository (Integration) > should find by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorBlackoutRepository (Integration) > should delete a blackout period
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorAvailabilitySlotRepository (Integration) > should create concrete slot
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorAvailabilitySlotRepository (Integration) > should reserve and release slot
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorAvailabilitySlotRepository (Integration) > should mark as booked and expired
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorAvailabilitySlotRepository (Integration) > should find available slot by id with time check
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorQualificationRepository (Integration) > should create and find qualifications
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorQualificationRepository (Integration) > should update and delete qualifications
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorLanguageRepository (Integration) > should create and find languages
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorLanguageRepository (Integration) > should delete a language
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorServiceAreaRepository (Integration) > should create and find service areas
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorServiceAreaRepository (Integration) > should delete a service area
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorVerificationRepository (Integration) > should upsert verification checks
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorVerificationRepository (Integration) > should find checks by tutorId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorVerificationRepository (Integration) > should create documents and set status
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorVerificationRepository (Integration) > should list pending verification cases
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaTutorVerificationRepository (Integration) > should handle transactions for approve/reject/requestChanges
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSubjectRepository (Integration) > should find all active subjects
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSubjectRepository (Integration) > should find subject by slug
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaSubjectRepository (Integration) > should return null for non-existent slug
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should create and find a booking by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should create and find a booking by id
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by publicId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by publicId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by parentId with filtering
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by parentId with filtering
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by tutorId with filtering
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by tutorId with filtering
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find overlapping bookings
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find overlapping bookings
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find bookings by time range
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find bookings by time range
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should update booking status
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should update booking status
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should add status history
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should add status history
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by slot id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by slot id
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should enforce foreign key constraint on parentId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should enforce foreign key constraint on parentId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should create and find a payment by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should create and find a payment by id
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by bookingId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by bookingId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by providerOrderId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by providerOrderId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by providerPaymentId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by providerPaymentId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by idempotencyKey
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by idempotencyKey
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should update payment status
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should update payment status
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should add and get transactions
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should add and get transactions
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should save and find webhook events
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should save and find webhook events
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should get unprocessed webhooks
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should get unprocessed webhooks
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should mark webhook processed
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should mark webhook processed
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should create and find refunds
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should create and find refunds
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should update refund status
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should update refund status
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should count by status
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should count by status
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should get payment summary
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should get payment summary
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should create and find a notification
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should create and find a notification
+prisma:error 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find notifications by userId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find notifications by userId
+prisma:error 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find notification by user and id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find notification by user and id
+prisma:error 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should mark as read
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should mark as read
+prisma:error 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find due for dispatch
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find due for dispatch
+prisma:error 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should update after send
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should update after send
+prisma:error 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should increment attempt and mark dead letter
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should increment attempt and mark dead letter
+prisma:error 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should count unread
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should upsert and find push token
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should upsert and find preferences
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should upsert and find preferences
+prisma:error 
+Invalid `this.db.notificationPreference.upsert()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:169:62
+
+  166 }
+  167 
+  168 async upsertPreference(data: UpsertPreferenceRecord): Promise<NotificationPreferenceRecord> {
+→ 169   const record: any = await this.db.notificationPreference.upsert(
+The table `public.NotificationPreference` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should create and find outbox events
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should create and find outbox events
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should find pending events
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should find pending events
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should mark processing, processed, and failed
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should mark processing, processed, and failed
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should create and find a review
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should create and find a review
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by bookingId and parentId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by bookingId and parentId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by tutorId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by tutorId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by parentId
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by parentId
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should moderate a review
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should moderate a review
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find pending moderation reviews
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find pending moderation reviews
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should update tutor rating
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should update tutor rating
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should enforce unique constraint on bookingId for review
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should enforce unique constraint on bookingId for review
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list users with pagination
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list users filtered by status
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should get user by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should return null for non-existent user
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list tutors with pagination
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list bookings with pagination
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list bookings with pagination
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should get booking by id
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should get booking by id
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list payments with pagination
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list payments with pagination
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list refunds with pagination
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should get overview
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should create and list audit logs
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should filter audit logs by entityType and action
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > Transaction and Rollback (Integration) > should roll back on failure within a transaction
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > Transaction and Rollback (Integration) > should roll back on failure within a transaction
+prisma:error 
+Invalid `this.db.payment.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-payment.repository.ts:101:47
+
+   98 }
+   99 
+  100 async create(data: CreatePaymentRecord): Promise<PaymentRecord> {
+→ 101   const record: any = await this.db.payment.create(
+Foreign key constraint violated: `Payment_bookingId_fkey (index)`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > Transaction and Rollback (Integration) > should commit successful transaction
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+stdout | src/repositories/prisma-repository.integration.test.ts > Transaction and Rollback (Integration) > should commit successful transaction
+prisma:error 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+stdout | src/repositories/prisma-repository.integration.test.ts
+prisma:error 
+Invalid `prisma.$executeRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42P01`. Message: `relation "NotificationPreference" does not exist`
+
+ ❯ |infrastructure| src/repositories/prisma-repository.integration.test.ts (126 tests | 47 failed) 436659ms
+   ✓ PrismaUserRepository (Integration) > should create and find a user by id  3009ms
+   ✓ PrismaUserRepository (Integration) > should find a user by email  3125ms
+   ✓ PrismaUserRepository (Integration) > should find a user by phone  3039ms
+   ✓ PrismaUserRepository (Integration) > should update a user  2994ms
+   ✓ PrismaUserRepository (Integration) > should enforce unique email constraint  3133ms
+   ✓ PrismaUserRepository (Integration) > should return null for non-existent user  2951ms
+   ✓ PrismaUserRepository (Integration) > should return null on findByEmail for non-existent  2974ms
+   ✓ PrismaOtpChallengeRepository (Integration) > should create and find an OTP challenge by id  4200ms
+   ✓ PrismaOtpChallengeRepository (Integration) > should mark consumed  4139ms
+   ✓ PrismaOtpChallengeRepository (Integration) > should increment attempts  4103ms
+   ✓ PrismaSessionRepository (Integration) > should create and find a session by id  4139ms
+   ✓ PrismaSessionRepository (Integration) > should find by refresh token hash  4150ms
+   ✓ PrismaSessionRepository (Integration) > should list sessions by userId  4200ms
+   ✓ PrismaSessionRepository (Integration) > should revoke a session  4097ms
+   ✓ PrismaSessionRepository (Integration) > should revoke all sessions by userId  4120ms
+   ✓ PrismaSessionRepository (Integration) > should enforce unique refreshTokenHash constraint  4216ms
+   ✓ PrismaUserRoleRepository (Integration) > should assign and find roles  4151ms
+   ✓ PrismaUserRoleRepository (Integration) > should enforce unique userId+role constraint  3899ms
+   ✓ PrismaParentRepository (Integration) > should return null for non-existent parent  3964ms
+   ✓ PrismaParentRepository (Integration) > should update parent profile and find it  4083ms
+   ✓ PrismaParentRepository (Integration) > should enforce unique userId constraint on parent  4141ms
+   × PrismaParentRepository (Integration) > should cascade delete on user delete 4132ms
+     → 
+Invalid `prisma.user.delete()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-repository.integration.test.ts:398:23
+
+  395 await prisma.parent.create({
+  396   data: { userId: u.id, city: "Cascade City" },
+  397 });
+→ 398 await prisma.user.delete(
+Foreign key constraint violated: `Parent_userId_fkey (index)`
+   ✓ PrismaStudentRepository (Integration) > should create and find a student by id  3991ms
+   ✓ PrismaStudentRepository (Integration) > should find students by parent id  4125ms
+   ✓ PrismaStudentRepository (Integration) > should verify parent ownership  4163ms
+   ✓ PrismaStudentRepository (Integration) > should soft delete a student  4192ms
+   ✓ PrismaStudentRepository (Integration) > should enforce unique userId constraint  4370ms
+   ✓ PrismaStudentRepository (Integration) > should enforce unique studentId+parentId constraint on guardian  2947ms
+   ✓ PrismaTutorRepository (Integration) > should create and find a tutor by userId  2883ms
+   ✓ PrismaTutorRepository (Integration) > should find a tutor by id  2835ms
+   ✓ PrismaTutorRepository (Integration) > should update a tutor  2953ms
+   ✓ PrismaTutorRepository (Integration) > should enforce unique userId constraint on tutor  3108ms
+   ✓ PrismaTutorRepository (Integration) > should return null for non-existent tutor  2942ms
+   ✓ PrismaTutorSubjectRepository (Integration) > should create and find a tutor subject  3017ms
+   ✓ PrismaTutorSubjectRepository (Integration) > should find by tutorId  2950ms
+   ✓ PrismaTutorSubjectRepository (Integration) > should find by tutorId and subjectId  2986ms
+   ✓ PrismaTutorSubjectRepository (Integration) > should soft delete (mark inactive)  3068ms
+   ✓ PrismaTutorSearchRepository (Integration) > should search tutors with filters  3000ms
+   ✓ PrismaTutorSearchRepository (Integration) > should return empty for non-matching filters  2985ms
+   ✓ PrismaTutorWeeklySlotRepository (Integration) > should create and find weekly slots  2933ms
+   ✓ PrismaTutorWeeklySlotRepository (Integration) > should find overlapping slots  2931ms
+   ✓ PrismaTutorWeeklySlotRepository (Integration) > should update a weekly slot  2886ms
+   ✓ PrismaTutorWeeklySlotRepository (Integration) > should delete a weekly slot  2900ms
+   ✓ PrismaTutorWeeklySlotRepository (Integration) > should enforce unique constraint on tutorId+dayOfWeek+startTime+serviceMode  2922ms
+   ✓ PrismaTutorBreakPeriodRepository (Integration) > should create and find break periods  2912ms
+   ✓ PrismaTutorBreakPeriodRepository (Integration) > should delete a break period  2893ms
+   ✓ PrismaTutorBlackoutRepository (Integration) > should create and find blackout periods  2838ms
+   ✓ PrismaTutorBlackoutRepository (Integration) > should find by id  2898ms
+   ✓ PrismaTutorBlackoutRepository (Integration) > should delete a blackout period  2984ms
+   ✓ PrismaTutorAvailabilitySlotRepository (Integration) > should create concrete slot  2983ms
+   ✓ PrismaTutorAvailabilitySlotRepository (Integration) > should reserve and release slot  2970ms
+   ✓ PrismaTutorAvailabilitySlotRepository (Integration) > should mark as booked and expired  3150ms
+   ✓ PrismaTutorAvailabilitySlotRepository (Integration) > should find available slot by id with time check  2945ms
+   ✓ PrismaTutorQualificationRepository (Integration) > should create and find qualifications  3024ms
+   ✓ PrismaTutorQualificationRepository (Integration) > should update and delete qualifications  3016ms
+   ✓ PrismaTutorLanguageRepository (Integration) > should create and find languages  2857ms
+   ✓ PrismaTutorLanguageRepository (Integration) > should delete a language  2975ms
+   ✓ PrismaTutorServiceAreaRepository (Integration) > should create and find service areas  2919ms
+   ✓ PrismaTutorServiceAreaRepository (Integration) > should delete a service area  2910ms
+   ✓ PrismaTutorVerificationRepository (Integration) > should upsert verification checks  2861ms
+   ✓ PrismaTutorVerificationRepository (Integration) > should find checks by tutorId  3022ms
+   ✓ PrismaTutorVerificationRepository (Integration) > should create documents and set status  2932ms
+   ✓ PrismaTutorVerificationRepository (Integration) > should list pending verification cases  2874ms
+   ✓ PrismaTutorVerificationRepository (Integration) > should handle transactions for approve/reject/requestChanges  3000ms
+   ✓ PrismaSubjectRepository (Integration) > should find all active subjects  2920ms
+   ✓ PrismaSubjectRepository (Integration) > should find subject by slug  2914ms
+   ✓ PrismaSubjectRepository (Integration) > should return null for non-existent slug  2950ms
+   × PrismaBookingRepository (Integration) > should create and find a booking by id 3082ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should find by publicId 2969ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should find by parentId with filtering 2884ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should find by tutorId with filtering 2935ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should find overlapping bookings 2900ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should find bookings by time range 3136ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should update booking status 2968ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should add status history 2960ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaBookingRepository (Integration) > should find by slot id 2965ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   ✓ PrismaBookingRepository (Integration) > should enforce foreign key constraint on parentId  2915ms
+   × PrismaPaymentRepository (Integration) > should create and find a payment by id 3097ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should find by bookingId 2922ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should find by providerOrderId 2945ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should find by providerPaymentId 2968ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should find by idempotencyKey 3028ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should update payment status 3015ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should add and get transactions 3115ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should save and find webhook events 3041ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should get unprocessed webhooks 2974ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should mark webhook processed 3084ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should create and find refunds 3153ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should update refund status 3024ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should count by status 2931ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaPaymentRepository (Integration) > should get payment summary 2984ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaNotificationRepository (Integration) > should create and find a notification 3468ms
+     → 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+   × PrismaNotificationRepository (Integration) > should find notifications by userId 2999ms
+     → 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+   × PrismaNotificationRepository (Integration) > should find notification by user and id 3093ms
+     → 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+   × PrismaNotificationRepository (Integration) > should mark as read 3008ms
+     → 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+   × PrismaNotificationRepository (Integration) > should find due for dispatch 3060ms
+     → 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+   × PrismaNotificationRepository (Integration) > should update after send 3046ms
+     → 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+   × PrismaNotificationRepository (Integration) > should increment attempt and mark dead letter 2891ms
+     → 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+   ✓ PrismaNotificationRepository (Integration) > should count unread  2930ms
+   ✓ PrismaNotificationRepository (Integration) > should upsert and find push token  3195ms
+   × PrismaNotificationRepository (Integration) > should upsert and find preferences 4203ms
+     → 
+Invalid `this.db.notificationPreference.upsert()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:169:62
+
+  166 }
+  167 
+  168 async upsertPreference(data: UpsertPreferenceRecord): Promise<NotificationPreferenceRecord> {
+→ 169   const record: any = await this.db.notificationPreference.upsert(
+The table `public.NotificationPreference` does not exist in the current database.
+   × PrismaOutboxEventRepository (Integration) > should create and find outbox events 4309ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaOutboxEventRepository (Integration) > should find pending events 4151ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaOutboxEventRepository (Integration) > should mark processing, processed, and failed 4167ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should create and find a review 4171ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should find by bookingId and parentId 4098ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should find by tutorId 4308ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should find by parentId 4149ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should moderate a review 4063ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should find pending moderation reviews 4016ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should update tutor rating 4007ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaReviewRepository (Integration) > should enforce unique constraint on bookingId for review 4052ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   ✓ PrismaAdminRepository (Integration) > should list users with pagination  4167ms
+   ✓ PrismaAdminRepository (Integration) > should list users filtered by status  3949ms
+   ✓ PrismaAdminRepository (Integration) > should get user by id  4124ms
+   ✓ PrismaAdminRepository (Integration) > should return null for non-existent user  4048ms
+   ✓ PrismaAdminRepository (Integration) > should list tutors with pagination  4157ms
+   × PrismaAdminRepository (Integration) > should list bookings with pagination 4183ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaAdminRepository (Integration) > should get booking by id 4060ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   × PrismaAdminRepository (Integration) > should list payments with pagination 4202ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+   ✓ PrismaAdminRepository (Integration) > should list refunds with pagination  4194ms
+   ✓ PrismaAdminRepository (Integration) > should get overview  4188ms
+   ✓ PrismaAdminRepository (Integration) > should create and list audit logs  4217ms
+   ✓ PrismaAdminRepository (Integration) > should filter audit logs by entityType and action  4132ms
+   ✓ Transaction and Rollback (Integration) > should roll back on failure within a transaction  4143ms
+   × Transaction and Rollback (Integration) > should commit successful transaction 4249ms
+     → 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 47 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaParentRepository (Integration) > should cascade delete on user delete
+PrismaClientKnownRequestError: 
+Invalid `prisma.user.delete()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-repository.integration.test.ts:398:23
+
+  395 await prisma.parent.create({
+  396   data: { userId: u.id, city: "Cascade City" },
+  397 });
+→ 398 await prisma.user.delete(
+Foreign key constraint violated: `Parent_userId_fkey (index)`
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ src/repositories/prisma-repository.integration.test.ts:398:5
+    396|       data: { userId: u.id, city: "Cascade City" },
+    397|     });
+    398|     await prisma.user.delete({ where: { id: u.id } });
+       |     ^
+    399|     const parent = await prisma.parent.findUnique({ where: { userId: u…
+    400|     expect(parent).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should create and find a booking by id
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1339:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by publicId
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1361:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by parentId with filtering
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1378:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by tutorId with filtering
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1395:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find overlapping bookings
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1412:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find bookings by time range
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1433:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should update booking status
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1454:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should add status history
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1472:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaBookingRepository (Integration) > should find by slot id
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1502:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should create and find a payment by id
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by bookingId
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by providerOrderId
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by providerPaymentId
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should find by idempotencyKey
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should update payment status
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should add and get transactions
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should save and find webhook events
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should get unprocessed webhooks
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should mark webhook processed
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should create and find refunds
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should update refund status
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should count by status
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaPaymentRepository (Integration) > should get payment summary
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1575:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should create and find a notification
+PrismaClientKnownRequestError: 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.create src/repositories/prisma-notification.repository.ts:30:25
+     28| 
+     29|   async create(data: CreateNotificationRecord): Promise<NotificationRe…
+     30|     const record: any = await this.db.notification.create({
+       |                         ^
+     31|       data: {
+     32|         userId: data.userId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1803:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find notifications by userId
+PrismaClientKnownRequestError: 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.create src/repositories/prisma-notification.repository.ts:30:25
+     28| 
+     29|   async create(data: CreateNotificationRecord): Promise<NotificationRe…
+     30|     const record: any = await this.db.notification.create({
+       |                         ^
+     31|       data: {
+     32|         userId: data.userId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1817:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find notification by user and id
+PrismaClientKnownRequestError: 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.create src/repositories/prisma-notification.repository.ts:30:25
+     28| 
+     29|   async create(data: CreateNotificationRecord): Promise<NotificationRe…
+     30|     const record: any = await this.db.notification.create({
+       |                         ^
+     31|       data: {
+     32|         userId: data.userId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1828:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should mark as read
+PrismaClientKnownRequestError: 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.create src/repositories/prisma-notification.repository.ts:30:25
+     28| 
+     29|   async create(data: CreateNotificationRecord): Promise<NotificationRe…
+     30|     const record: any = await this.db.notification.create({
+       |                         ^
+     31|       data: {
+     32|         userId: data.userId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1845:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should find due for dispatch
+PrismaClientKnownRequestError: 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.create src/repositories/prisma-notification.repository.ts:30:25
+     28| 
+     29|   async create(data: CreateNotificationRecord): Promise<NotificationRe…
+     30|     const record: any = await this.db.notification.create({
+       |                         ^
+     31|       data: {
+     32|         userId: data.userId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1856:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should update after send
+PrismaClientKnownRequestError: 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.create src/repositories/prisma-notification.repository.ts:30:25
+     28| 
+     29|   async create(data: CreateNotificationRecord): Promise<NotificationRe…
+     30|     const record: any = await this.db.notification.create({
+       |                         ^
+     31|       data: {
+     32|         userId: data.userId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1871:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should increment attempt and mark dead letter
+PrismaClientKnownRequestError: 
+Invalid `this.db.notification.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:30:52
+
+  27 // --- Notification CRUD ---
+  28 
+  29 async create(data: CreateNotificationRecord): Promise<NotificationRecord> {
+→ 30   const record: any = await this.db.notification.create(
+The column `provider` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.create src/repositories/prisma-notification.repository.ts:30:25
+     28| 
+     29|   async create(data: CreateNotificationRecord): Promise<NotificationRe…
+     30|     const record: any = await this.db.notification.create({
+       |                         ^
+     31|       data: {
+     32|         userId: data.userId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1888:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaNotificationRepository (Integration) > should upsert and find preferences
+PrismaClientKnownRequestError: 
+Invalid `this.db.notificationPreference.upsert()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-notification.repository.ts:169:62
+
+  166 }
+  167 
+  168 async upsertPreference(data: UpsertPreferenceRecord): Promise<NotificationPreferenceRecord> {
+→ 169   const record: any = await this.db.notificationPreference.upsert(
+The table `public.NotificationPreference` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaNotificationRepository.upsertPreference src/repositories/prisma-notification.repository.ts:169:25
+    167| 
+    168|   async upsertPreference(data: UpsertPreferenceRecord): Promise<Notifi…
+    169|     const record: any = await this.db.notificationPreference.upsert({
+       |                         ^
+    170|       where: {
+    171|         userId_channel_category: {
+ ❯ src/repositories/prisma-repository.integration.test.ts:1933:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should create and find outbox events
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should find pending events
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaOutboxEventRepository (Integration) > should mark processing, processed, and failed
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:1987:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should create and find a review
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by bookingId and parentId
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by tutorId
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find by parentId
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should moderate a review
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should find pending moderation reviews
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should update tutor rating
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaReviewRepository (Integration) > should enforce unique constraint on bookingId for review
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:2114:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list bookings with pagination
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:2319:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should get booking by id
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:2356:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > PrismaAdminRepository (Integration) > should list payments with pagination
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:2393:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/47]⎯
+
+ FAIL  |infrastructure| src/repositories/prisma-repository.integration.test.ts > Transaction and Rollback (Integration) > should commit successful transaction
+PrismaClientKnownRequestError: 
+Invalid `this.db.booking.create()` invocation in
+/home/pradeep270820/projects/New Project/packages/infrastructure/src/repositories/prisma-booking.repository.ts:97:47
+
+  94 }
+  95 
+  96 async create(data: CreateBookingRecord): Promise<BookingRecord> {
+→ 97   const record: any = await this.db.booking.create(
+The column `rescheduledFromBookingId` does not exist in the current database.
+ ❯ zn.handleRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:7459
+ ❯ zn.handleAndLogRequestError ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6784
+ ❯ zn.request ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:121:6491
+ ❯ l ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.3__typescript@5.8.3/node_modules/@prisma/client/runtime/library.js:130:9778
+ ❯ PrismaBookingRepository.create src/repositories/prisma-booking.repository.ts:97:25
+     95| 
+     96|   async create(data: CreateBookingRecord): Promise<BookingRecord> {
+     97|     const record: any = await this.db.booking.create({
+       |                         ^
+     98|       data: {
+     99|         parentId: data.parentId,
+ ❯ src/repositories/prisma-repository.integration.test.ts:2531:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/47]⎯
+
+
+ Test Files  1 failed | 39 passed (40)
+      Tests  47 failed | 350 passed (397)
+   Start at  11:06:50
+   Duration  439.10s (transform 3.05s, setup 3.91s, collect 5.33s, tests 437.32s, environment 5ms, prepare 3.27s)
+
+[ELIFECYCLE] Test failed. See above for more details.

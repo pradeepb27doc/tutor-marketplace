@@ -1,0 +1,19 @@
+{
+  "name": "@tutor-marketplace/application",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@tutor-marketplace/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3",
+    "vitest": "3.1.1"
+  }
+}

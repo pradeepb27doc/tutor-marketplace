@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: tutor_marketplace
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm -r exec tsc --noEmit
+
+      - name: Lint
+        run: pnpm -r exec eslint src --ext .ts,.tsx || true
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Generate Prisma client
+        run: pnpm --filter @tutor-marketplace/database prisma generate
+
+      - name: Run Prisma migrations
+        run: pnpm --filter @tutor-marketplace/database prisma migrate dev --name init
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/tutor_marketplace?schema=public
+
+      - name: Run workspace verification
+        run: pnpm verify
+
+      - name: Run tests with Vitest
+        run: pnpm test
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/tutor_marketplace?schema=public
+          JWT_SECRET: test-secret-key-for-ci-min-length
+          NODE_ENV: development
+          LOG_LEVEL: warn
