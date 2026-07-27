@@ -135,11 +135,11 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-3">
-            <a href="#login" className="hidden text-sm font-medium text-foreground/70 transition-colors hover:text-foreground sm:inline-flex">
+            <a href="/login" className="hidden text-sm font-medium text-foreground/70 transition-colors hover:text-foreground sm:inline-flex">
               Login
             </a>
             <a
-              href="#signup"
+              href="/signup"
               className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus:ring-offset-background"
             >
               Sign Up
