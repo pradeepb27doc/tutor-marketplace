@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle2, ArrowLeft, Calendar } from "lucide-react";
+import { CheckCircle2, ArrowLeft, Calendar, CreditCard } from "lucide-react";
 
 export default function BookingSuccessContent() {
   const searchParams = useSearchParams();
@@ -137,8 +137,14 @@ export default function BookingSuccessContent() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
-              href="/"
+              href={`/payment?bookingId=${encodeURIComponent(bookingId)}`}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+            >
+              <CreditCard className="size-4" aria-hidden="true" /> Pay Now
+            </Link>
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
             >
               <ArrowLeft className="size-4" aria-hidden="true" /> Return Home
             </Link>
