@@ -1,0 +1,1 @@
+export const TUTOR_PROFILE_SKELETON_COUNT = 1;

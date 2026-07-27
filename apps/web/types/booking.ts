@@ -1,3 +1,6 @@
+// Legacy types - kept for backward compatibility with existing components
+// New booking types are in features/booking/types/
+
 export interface Tutor {
   id: string;
   name: string;
