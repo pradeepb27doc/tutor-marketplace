@@ -1,5 +1,3 @@
-const navigationItems = ["Find Tutors", "Subjects", "Become a Tutor", "About"];
-
 const trustItems = ["Verified Tutors", "Thousands of Learning Hours"];
 
 const statistics = [
@@ -111,42 +109,12 @@ const footerGroups = [
   { title: "Social", links: ["LinkedIn", "Instagram", "X", "YouTube"] }
 ];
 
+import { SiteHeader } from "@/features/notifications/components/site-header";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b border-transparent bg-background/78 backdrop-blur-xl supports-[backdrop-filter]:bg-background/64">
-        <nav
-          aria-label="Main navigation"
-          className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8"
-        >
-          <a href="#top" className="group flex items-center gap-3" aria-label="Tutor Marketplace home">
-            <span className="grid size-9 place-items-center rounded-full border border-foreground/12 bg-foreground text-background transition-transform duration-300 group-hover:scale-105">
-              <span className="size-2.5 rounded-full bg-background" />
-            </span>
-            <span className="text-sm font-semibold tracking-tight sm:text-base">Tutor Marketplace</span>
-          </a>
-
-          <div className="hidden items-center gap-9 text-sm font-medium text-foreground/68 lg:flex">
-            {navigationItems.map((item) => (
-              <a key={item} href={`#${item.toLowerCase().replaceAll(" ", "-")}`} className="transition-colors hover:text-foreground">
-                {item}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-3">
-            <a href="/login" className="hidden text-sm font-medium text-foreground/70 transition-colors hover:text-foreground sm:inline-flex">
-              Login
-            </a>
-            <a
-              href="/signup"
-              className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus:ring-offset-background"
-            >
-              Sign Up
-            </a>
-          </div>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section id="top" className="relative -mt-20 overflow-hidden px-6 pb-24 pt-40 sm:pb-28 lg:px-8 lg:pt-44">
         <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-16 lg:grid-cols-[1.02fr_0.98fr]">
@@ -155,7 +123,7 @@ export default function Home() {
               Trusted tutor discovery for every learning path
             </p>
             <h1 className="text-balance text-6xl font-semibold tracking-[-0.065em] text-foreground sm:text-7xl lg:text-[5.75rem] lg:leading-[0.92]">
-              Find the Right Tutor. Unlock Every Student&apos;s Potential.
+              Find the Right Tutor. Unlock Every Student&#39;s Potential.
             </h1>
             <p className="mt-8 max-w-2xl text-pretty text-lg leading-8 text-foreground/64 sm:text-xl">
               Connect with verified tutors for school, competitive exams, coding, music, languages, and more—all in one trusted platform.

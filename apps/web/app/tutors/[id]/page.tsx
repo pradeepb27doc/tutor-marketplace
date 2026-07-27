@@ -12,6 +12,7 @@ import { SubjectsSection } from "../../../features/tutor-profile/components/subj
 import { QualificationsSection } from "../../../features/tutor-profile/components/qualifications-section";
 import { LanguagesSection } from "../../../features/tutor-profile/components/languages-section";
 import { ServiceAreasSection } from "../../../features/tutor-profile/components/service-areas-section";
+import { ReviewsSection } from "../../../features/tutor-profile/components/reviews-section";
 
 export default function TutorProfilePage() {
   const params = useParams<{ id: string }>();
@@ -57,6 +58,7 @@ export default function TutorProfilePage() {
             <QualificationsSection qualifications={tutor.qualifications} />
             <LanguagesSection languages={tutor.languages} />
             <ServiceAreasSection serviceAreas={tutor.serviceAreas} />
+            <ReviewsSection tutorId={tutor.id} />
           </div>
 
           {/* Right sidebar */}
