@@ -343,10 +343,10 @@ export default function SearchPage() {
                           <p className="mt-1 text-2xl font-semibold tracking-[-0.04em] text-foreground">{tutor.fee}</p>
                         </div>
                         <div className="flex gap-3">
-                          <Link href="#" className="inline-flex flex-1 items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold transition-colors hover:bg-secondary sm:flex-none">
+                          <Link href={`/tutors/${tutor.name}`} className="inline-flex flex-1 items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold transition-colors hover:bg-secondary sm:flex-none">
                             View Profile
                           </Link>
-                          <Link href="#" className="inline-flex flex-1 items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5 sm:flex-none">
+                          <Link href="/booking" className="inline-flex flex-1 items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5 sm:flex-none">
                             Book Trial
                           </Link>
                         </div>

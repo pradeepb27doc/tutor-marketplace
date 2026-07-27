@@ -138,7 +138,7 @@ function Navbar() {
           <Link href="/search" className="hidden rounded-full border border-border px-4 py-2 text-sm font-semibold transition-colors hover:bg-secondary sm:inline-flex">
             Back to Search
           </Link>
-          <Link href="#booking" className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5">
+          <Link href="/booking" className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5">
             Book Trial
           </Link>
         </div>
@@ -226,7 +226,7 @@ function TutorHero() {
             <p className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">{tutor.hourlyRate}</p>
             <p className="mt-2 text-sm text-foreground/52">{tutor.trialRate}</p>
             <div className="mt-6 grid gap-3">
-              <Link href="#booking" className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-4 text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl">
+              <Link href="/booking" className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-4 text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl">
                 <CalendarDays className="size-4" aria-hidden="true" /> Book Trial Class
               </Link>
               <button className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-6 py-4 text-sm font-semibold transition-colors hover:bg-secondary">
