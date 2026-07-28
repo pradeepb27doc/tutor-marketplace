@@ -1,13 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/features/auth/components/auth-provider";
+import { RouteGuard } from "@/features/auth/components/route-guard";
 import { useNotifications } from "../hooks/use-notifications";
 import { NotificationsList } from "./notifications-list";
 
 export function NotificationsPageClient() {
-  const { isAuthenticated, isLoading: authLoading } = useAuth();
-  const router = useRouter();
+  const { isLoading: authLoading } = useAuth();
   const { notifications, page, isLoading, isFetching, error, refresh, loadMore, markAsRead, markAllAsRead, delete: deleteNotification } =
     useNotifications();
 
@@ -21,20 +20,8 @@ export function NotificationsPageClient() {
     );
   }
 
-  if (!isAuthenticated) {
-    if (typeof window !== "undefined") {
-      router.push("/login");
-    }
-    return (
-      <div className="min-h-screen bg-background">
-        <div className="mx-auto max-w-3xl px-5 py-10">
-          <p className="text-sm text-foreground/60">Redirecting to login...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
+    <RouteGuard>
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-5 py-10">
         <div className="flex items-center justify-between">
@@ -56,5 +43,6 @@ export function NotificationsPageClient() {
         </div>
       </div>
     </div>
+    </RouteGuard>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 import { useAuth } from "../../auth/components/auth-provider";
+import { RouteGuard } from "../../auth/components/route-guard";
 import { useTutorAvailability } from "../hooks/use-tutor-dashboard";
 import { useAvailabilityActions } from "../hooks/use-availability-actions";
 import { Modal } from "./modal";
@@ -27,8 +27,7 @@ type ModalState =
   | null;
 
 export function AvailabilityPage() {
-  const router = useRouter();
-  const { isAuthenticated, isLoading: authLoading, getAccessToken, user } = useAuth();
+  const { getAccessToken } = useAuth();
   const token = getAccessToken();
 
   const { data: availability, loading, error, retry } = useTutorAvailability(token);
@@ -36,44 +35,6 @@ export function AvailabilityPage() {
     useAvailabilityActions(token, retry);
 
   const [modal, setModal] = useState<ModalState>(null);
-
-  if (authLoading) {
-    return (
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <p className="text-sm text-gray-600">Loading...</p>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <p className="text-sm text-gray-600">Redirecting to login...</p>
-      </div>
-    );
-  }
-
-  const isTutor =
-    user && (user.primaryRole === "TUTOR" || user.roles.includes("TUTOR"));
-  if (!isTutor) {
-    return (
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <EmptyState
-          title="Not authorized"
-          description="This page is available only for tutors."
-          action={
-            <button
-              type="button"
-              onClick={() => router.replace("/dashboard")}
-              className="inline-flex items-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-800"
-            >
-              Go to your dashboard
-            </button>
-          }
-        />
-      </div>
-    );
-  }
 
   const handleSlotSubmit = async (data: SlotFormData): Promise<MutationResult> => {
     if (modal?.type === "slot-form" && modal.slot) {
@@ -96,14 +57,15 @@ export function AvailabilityPage() {
     setModal(null);
   };
 
-  if (loading) return <AvailabilitySkeleton />;
-  if (error) return <ErrorCard title="Availability error" message={error} onRetry={retry} />;
+  if (loading) return <RouteGuard requiredRole="TUTOR" fallbackHref="/dashboard"><AvailabilitySkeleton /></RouteGuard>;
+  if (error) return <RouteGuard requiredRole="TUTOR" fallbackHref="/dashboard"><ErrorCard title="Availability error" message={error} onRetry={retry} /></RouteGuard>;
 
   const hasSlots = availability && availability.weeklySlots.length > 0;
   const hasBreaks = availability && availability.breaks.length > 0;
 
   if (!hasSlots && !hasBreaks) {
     return (
+      <RouteGuard requiredRole="TUTOR" fallbackHref="/dashboard">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <EmptyState
           title="No availability set"
@@ -128,10 +90,12 @@ export function AvailabilityPage() {
           </Modal>
         )}
       </div>
+      </RouteGuard>
     );
   }
 
   return (
+    <RouteGuard requiredRole="TUTOR" fallbackHref="/dashboard">
     <div className="mx-auto max-w-5xl px-4 py-8">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Availability</h1>
@@ -224,6 +188,7 @@ export function AvailabilityPage() {
         </Modal>
       )}
     </div>
+    </RouteGuard>
   );
 }
 

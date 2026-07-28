@@ -1,7 +1,11 @@
 "use client";
 
 import React from "react";
+import { useParams } from "next/navigation";
 import { useAuth } from "../../../features/auth/components/auth-provider";
+import { RouteGuard } from "../../../features/auth/components/route-guard";
+import { LoadingState } from "@/components/common/loading-state";
+import { AppErrorState } from "@/components/common/error-state";
 import { useBookingDetail } from "../../../features/booking-management/hooks/use-booking-detail";
 import { useUpdateBookingAction } from "../../../features/booking-management/hooks/use-update-booking-action";
 import { Timeline } from "../../../features/booking-management/components/timeline";
@@ -9,11 +13,12 @@ import { BookingActions } from "../../../features/booking-management/components/
 import { bookingStatusToVariant, formatBookingStatus } from "../../../features/booking-management/types";
 
 export default function BookingDetailPage() {
+  const params = useParams<{ id: string }>();
   const { getAccessToken, user } = useAuth();
   const accessToken = getAccessToken();
   const role = user?.primaryRole ?? null;
 
-  const bookingId = typeof window !== "undefined" ? window.location.pathname.split("/").pop() : undefined;
+  const bookingId = params.id;
 
   const { data, history, loading, error, retry } = useBookingDetail(bookingId, accessToken);
   const { state: actionState, action: performAction, reset: resetAction } = useUpdateBookingAction();
@@ -28,26 +33,20 @@ export default function BookingDetailPage() {
   };
 
   if (loading) {
-    return (
-      <div className="mx-auto max-w-4xl px-4 py-8">
-        <p className="text-sm text-gray-600">Loading booking details...</p>
-      </div>
-    );
+    return <RouteGuard><LoadingState label="Loading booking details" className="mx-auto max-w-4xl px-4 py-8" /></RouteGuard>;
   }
 
   if (error || !data) {
     return (
-      <div className="mx-auto max-w-4xl px-4 py-8">
-        <p className="text-sm font-medium text-red-800">Failed to load booking</p>
-        <p className="mt-1 text-xs text-red-600">{error ?? "Unknown error"}</p>
-        <button
-          type="button"
-          onClick={retry}
-          className="mt-3 rounded-md bg-red-100 px-3 py-1.5 text-xs font-medium text-red-800 hover:bg-red-200"
-        >
-          Retry
-        </button>
-      </div>
+      <RouteGuard>
+        <AppErrorState
+          title="Failed to load booking"
+          message={error ?? "Unknown error"}
+          onRetry={retry}
+          homeHref="/bookings"
+          className="mx-auto max-w-4xl px-4 py-8"
+        />
+      </RouteGuard>
     );
   }
 
@@ -56,6 +55,7 @@ export default function BookingDetailPage() {
   const durationMinutes = Math.max(1, Math.round((end.getTime() - start.getTime()) / 60000));
 
   return (
+    <RouteGuard>
     <div className="mx-auto max-w-4xl px-4 py-8">
       <h1 className="text-2xl font-bold text-gray-900">Booking Details</h1>
       <p className="mt-1 text-sm text-gray-600">Public ID: {data.publicId}</p>
@@ -137,5 +137,6 @@ export default function BookingDetailPage() {
         </div>
       </div>
     </div>
+    </RouteGuard>
   );
 }

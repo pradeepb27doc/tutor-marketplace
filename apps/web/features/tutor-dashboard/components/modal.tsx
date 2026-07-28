@@ -1,7 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import type { ReactNode } from "react";
 
 interface ModalProps {
@@ -20,9 +20,13 @@ export function Modal({
   maxWidth = "max-w-lg",
 }: ModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
     if (!isOpen) return;
+    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    dialogRef.current?.focus();
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -32,6 +36,7 @@ export function Modal({
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "";
+      previouslyFocused?.focus();
     };
   }, [isOpen, onClose]);
 
@@ -42,7 +47,7 @@ export function Modal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="modal-title"
+      aria-labelledby={titleId}
     >
       <div
         ref={overlayRef}
@@ -51,12 +56,14 @@ export function Modal({
         aria-hidden="true"
       />
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         className={`relative w-full ${maxWidth} rounded-lg bg-white p-6 shadow-xl`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
           <h2
-            id="modal-title"
+            id={titleId}
             className="text-lg font-semibold text-gray-900"
           >
             {title}

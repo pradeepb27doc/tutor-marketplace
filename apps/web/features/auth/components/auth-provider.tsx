@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
   useCallback,
+  useMemo,
   type ReactNode,
 } from "react";
 import type { UserDto } from "../types";
@@ -77,17 +78,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return authService.getAccessToken();
   }, []);
 
-  const value: AuthContextValue = {
-    user,
-    isAuthenticated: authService.isAuthenticated(),
-    isLoading,
-    login,
-    startOtp,
-    verifyOtp,
-    logout,
-    getAccessToken,
-    authApiError: AuthApiError,
-  };
+  const value = useMemo<AuthContextValue>(
+    () => ({
+      user,
+      isAuthenticated: authService.isAuthenticated(),
+      isLoading,
+      login,
+      startOtp,
+      verifyOtp,
+      logout,
+      getAccessToken,
+      authApiError: AuthApiError,
+    }),
+    [getAccessToken, isLoading, login, logout, startOtp, user, verifyOtp],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

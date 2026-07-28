@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "../../auth/components/auth-provider";
+import { RouteGuard } from "../../auth/components/route-guard";
 import { useTutorDashboard, useTutorBookings, useTutorAvailability, useTutorVerification } from "../hooks/use-tutor-dashboard";
 import { ErrorCard } from "./error-card";
 import { SkeletonCard } from "./skeleton-card";
@@ -33,8 +33,7 @@ function formatTimeRange(startTime: string, endTime: string) {
 }
 
 function TutorDashboardPage() {
-  const router = useRouter();
-  const { isAuthenticated, isLoading: authLoading, getAccessToken, user } = useAuth();
+  const { getAccessToken } = useAuth();
   const token = getAccessToken();
 
   const { data: dashboard, loading: dashboardLoading, error: dashboardError, retry: retryDashboard } = useTutorDashboard(token);
@@ -42,47 +41,11 @@ function TutorDashboardPage() {
   const { data: availability, loading: availabilityLoading, error: availabilityError, retry: retryAvailability } = useTutorAvailability(token);
   const { data: verification, loading: verificationLoading, error: verificationError, retry: retryVerification } = useTutorVerification(token);
 
-  if (authLoading) {
-    return (
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <p className="text-sm text-gray-600">Loading...</p>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <p className="text-sm text-gray-600">Redirecting to login...</p>
-      </div>
-    );
-  }
-
-  const isTutor = user && (user.primaryRole === "TUTOR" || user.roles.includes("TUTOR"));
-  if (!isTutor) {
-    return (
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <EmptyState
-          title="Not authorized"
-          description="This dashboard is available only for tutors."
-          action={
-            <button
-              type="button"
-              onClick={() => router.replace("/dashboard")}
-              className="inline-flex items-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-gray-800"
-            >
-              Go to your dashboard
-            </button>
-          }
-        />
-      </div>
-    );
-  }
-
   const totalBookings = bookings.length;
   const pendingBookings = bookings.filter((b: TutorBooking) => b.status === "PENDING").length;
 
   return (
+    <RouteGuard requiredRole="TUTOR" fallbackHref="/dashboard">
     <div className="mx-auto max-w-5xl px-4 py-8">
       <h1 className="text-2xl font-bold text-gray-900">Tutor Dashboard</h1>
 
@@ -272,6 +235,7 @@ function TutorDashboardPage() {
         ) : null}
       </div>
     </div>
+    </RouteGuard>
   );
 }
 

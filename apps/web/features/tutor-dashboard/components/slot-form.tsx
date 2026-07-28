@@ -59,6 +59,7 @@ export function SlotForm({
   };
 
   const formError = fieldErrors._form;
+  const errorId = (field: string) => `slot-${field}-error`;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -69,10 +70,11 @@ export function SlotForm({
       ) : null}
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label htmlFor="slot-day" className="block text-sm font-medium text-gray-700">
           Day of week
         </label>
         <select
+          id="slot-day"
           value={formData.dayOfWeek}
           onChange={(e) => handleChange("dayOfWeek", e.target.value)}
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
@@ -87,40 +89,49 @@ export function SlotForm({
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label htmlFor="slot-start-time" className="block text-sm font-medium text-gray-700">
             Start time
           </label>
           <input
+            id="slot-start-time"
             type="time"
+            aria-describedby={fieldErrors.startTime ? errorId("startTime") : undefined}
+            aria-invalid={fieldErrors.startTime ? "true" : undefined}
             value={formData.startTime}
             onChange={(e) => handleChange("startTime", e.target.value)}
             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
           {fieldErrors.startTime ? (
-            <p className="mt-1 text-xs text-red-600">{fieldErrors.startTime}</p>
+            <p id={errorId("startTime")} className="mt-1 text-xs text-red-600">{fieldErrors.startTime}</p>
           ) : null}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label htmlFor="slot-end-time" className="block text-sm font-medium text-gray-700">
             End time
           </label>
           <input
+            id="slot-end-time"
             type="time"
+            aria-describedby={fieldErrors.endTime ? errorId("endTime") : undefined}
+            aria-invalid={fieldErrors.endTime ? "true" : undefined}
             value={formData.endTime}
             onChange={(e) => handleChange("endTime", e.target.value)}
             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
           {fieldErrors.endTime ? (
-            <p className="mt-1 text-xs text-red-600">{fieldErrors.endTime}</p>
+            <p id={errorId("endTime")} className="mt-1 text-xs text-red-600">{fieldErrors.endTime}</p>
           ) : null}
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label htmlFor="slot-service-mode" className="block text-sm font-medium text-gray-700">
           Service mode
         </label>
         <select
+          id="slot-service-mode"
+          aria-describedby={fieldErrors.serviceMode ? errorId("serviceMode") : undefined}
+          aria-invalid={fieldErrors.serviceMode ? "true" : undefined}
           value={formData.serviceMode}
           onChange={(e) => handleChange("serviceMode", e.target.value)}
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
@@ -132,18 +143,21 @@ export function SlotForm({
           ))}
         </select>
         {fieldErrors.serviceMode ? (
-          <p className="mt-1 text-xs text-red-600">
+          <p id={errorId("serviceMode")} className="mt-1 text-xs text-red-600">
             {fieldErrors.serviceMode}
           </p>
         ) : null}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label htmlFor="slot-timezone" className="block text-sm font-medium text-gray-700">
           Timezone (optional)
         </label>
         <input
+          id="slot-timezone"
           type="text"
+          aria-describedby={fieldErrors.timezone ? errorId("timezone") : undefined}
+          aria-invalid={fieldErrors.timezone ? "true" : undefined}
           placeholder="Asia/Kolkata"
           value={formData.timezone ?? ""}
           onChange={(e) =>
@@ -152,16 +166,19 @@ export function SlotForm({
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
         />
         {fieldErrors.timezone ? (
-          <p className="mt-1 text-xs text-red-600">{fieldErrors.timezone}</p>
+          <p id={errorId("timezone")} className="mt-1 text-xs text-red-600">{fieldErrors.timezone}</p>
         ) : null}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label htmlFor="slot-capacity" className="block text-sm font-medium text-gray-700">
           Capacity (optional)
         </label>
         <input
+          id="slot-capacity"
           type="number"
+          aria-describedby={fieldErrors.capacity ? errorId("capacity") : undefined}
+          aria-invalid={fieldErrors.capacity ? "true" : undefined}
           min="1"
           max="999"
           placeholder="1"
@@ -173,7 +190,7 @@ export function SlotForm({
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
         />
         {fieldErrors.capacity ? (
-          <p className="mt-1 text-xs text-red-600">{fieldErrors.capacity}</p>
+          <p id={errorId("capacity")} className="mt-1 text-xs text-red-600">{fieldErrors.capacity}</p>
         ) : null}
       </div>
 

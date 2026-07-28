@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../../auth/components/auth-provider";
+import { RouteGuard } from "../../auth/components/route-guard";
 import { useDashboard } from "../hooks/use-dashboard";
 import { OverviewSection } from "./overview-section";
 import { BookingsSection } from "./bookings-section";
@@ -11,28 +10,10 @@ import { PaymentsSection } from "./payments-section";
 import { QuickActionsSection } from "./quick-actions-section";
 
 export function DashboardPage() {
-  const router = useRouter();
-  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const { state, loading, errors, retry } = useDashboard(true);
 
-  if (!isAuthenticated && !authLoading) {
-    router.replace("/login");
-    return (
-      <div className="mx-auto max-w-3xl px-4 py-10">
-        <p className="text-sm text-gray-600">Redirecting to login...</p>
-      </div>
-    );
-  }
-
-  if (authLoading) {
-    return (
-      <div className="mx-auto max-w-3xl px-4 py-10">
-        <p className="text-sm text-gray-600">Loading...</p>
-      </div>
-    );
-  }
-
   return (
+    <RouteGuard requiredRole="PARENT" fallbackHref="/tutor/dashboard">
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -75,5 +56,6 @@ export function DashboardPage() {
         onRetry={() => retry("payments")}
       />
     </div>
+    </RouteGuard>
   );
 }

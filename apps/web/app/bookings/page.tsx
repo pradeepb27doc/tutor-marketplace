@@ -2,6 +2,8 @@
 
 import React from "react";
 import { useAuth } from "../../features/auth/components/auth-provider";
+import { RouteGuard } from "../../features/auth/components/route-guard";
+import { LoadingState } from "@/components/common/loading-state";
 import { useBookingsList } from "../../features/booking-management/hooks/use-bookings-list";
 import { BookingTabs } from "../../features/booking-management/components/booking-tabs";
 import { BookingList } from "../../features/booking-management/components/booking-list";
@@ -24,22 +26,11 @@ export default function BookingsPage() {
   } = useBookingsList({ accessToken, role });
 
   if (authLoading) {
-    return (
-      <div className="mx-auto max-w-4xl px-4 py-8">
-        <p className="text-sm text-gray-600">Loading...</p>
-      </div>
-    );
-  }
-
-  if (!accessToken) {
-    return (
-      <div className="mx-auto max-w-4xl px-4 py-8">
-        <p className="text-sm text-gray-600">Please log in to view your bookings.</p>
-      </div>
-    );
+    return <LoadingState label="Loading bookings" className="mx-auto max-w-4xl px-4 py-8" />;
   }
 
   return (
+    <RouteGuard>
     <div className="mx-auto max-w-4xl px-4 py-8">
       <h1 className="text-2xl font-bold text-gray-900">Bookings</h1>
       <p className="mt-1 text-sm text-gray-600">Manage your bookings</p>
@@ -65,5 +56,6 @@ export default function BookingsPage() {
         />
       </div>
     </div>
+    </RouteGuard>
   );
 }

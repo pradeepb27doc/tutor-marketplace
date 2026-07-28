@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { ADMIN_NAV_ITEMS } from "../constants";
 import { useAuth } from "@/features/auth/components/auth-provider";
 import { LogOutIcon, MenuIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -14,10 +14,10 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     await logout();
     router.replace("/login");
-  };
+  }, [logout, router]);
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -26,6 +26,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         <div
           className="fixed inset-0 z-20 bg-black/40 lg:hidden"
           onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
         />
       )}
 
@@ -42,12 +43,13 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             type="button"
             onClick={() => setMobileOpen(false)}
             className="lg:hidden rounded-md p-1 text-gray-500 hover:bg-gray-100"
+            aria-label="Close admin navigation"
           >
             <XIcon className="h-5 w-5" />
           </button>
         </div>
 
-        <nav className="flex-1 px-2 py-4 space-y-1">
+        <nav className="flex-1 px-2 py-4 space-y-1" aria-label="Admin navigation">
           {ADMIN_NAV_ITEMS.map((item) => {
             const isActive = pathname === item.path;
             return (
@@ -55,6 +57,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                 key={item.value}
                 href={item.path}
                 onClick={() => setMobileOpen(false)}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
                   "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   isActive
@@ -86,6 +89,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             type="button"
             onClick={handleLogout}
             className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+            aria-label="Sign out of admin account"
           >
             <LogOutIcon className="h-4 w-4" />
             Sign Out
@@ -100,6 +104,8 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             type="button"
             onClick={() => setMobileOpen(true)}
             className="lg:hidden rounded-md p-1.5 text-gray-500 hover:bg-gray-100"
+            aria-label="Open admin navigation"
+            aria-expanded={mobileOpen}
           >
             <MenuIcon className="h-5 w-5" />
           </button>
