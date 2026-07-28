@@ -16,27 +16,31 @@ export type TutorBooking = {
   durationMinutes: number;
 };
 
+export type WeeklySlot = {
+  id: string;
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+  timezone: string;
+  serviceMode: string;
+  capacity: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BreakPeriod = {
+  id: string;
+  dayOfWeek: string | null;
+  startTime: string;
+  endTime: string;
+  reason: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type TutorAvailability = {
-  weeklySlots: {
-    id: string;
-    dayOfWeek: string;
-    startTime: string;
-    endTime: string;
-    timezone: string;
-    serviceMode: string;
-    capacity: number;
-    createdAt: string;
-    updatedAt: string;
-  }[];
-  breaks: {
-    id: string;
-    dayOfWeek: string | null;
-    startTime: string;
-    endTime: string;
-    reason: string | null;
-    createdAt: string;
-    updatedAt: string;
-  }[];
+  weeklySlots: WeeklySlot[];
+  breaks: BreakPeriod[];
 };
 
 export type TutorVerificationStatus = {
@@ -50,4 +54,28 @@ export type TutorVerificationStatus = {
     documentUrl: string;
     uploadedAt: string;
   }[];
+};
+
+export type SlotFormData = {
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+  serviceMode: string;
+  timezone?: string;
+  capacity?: number;
+};
+
+export type BreakFormData = {
+  dayOfWeek?: string | null;
+  startTime: string;
+  endTime: string;
+  reason?: string | null;
+};
+
+export type FieldErrors = Record<string, string>;
+
+export type MutationResult = {
+  success: boolean;
+  fieldErrors?: FieldErrors;
+  error?: string;
 };

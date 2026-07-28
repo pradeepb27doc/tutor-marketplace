@@ -95,10 +95,14 @@ class TutorDashboardApiClient {
   async getAvailability(
     accessToken: string,
   ): Promise<TutorAvailability> {
-    return this.request<TutorAvailability>("/tutors/me/availability", {
-      method: "GET",
-      headers: this.authHeaders(accessToken),
-    });
+    const res = await this.request<{ data: TutorAvailability }>(
+      "/tutors/me/availability",
+      {
+        method: "GET",
+        headers: this.authHeaders(accessToken),
+      },
+    );
+    return res.data;
   }
 
   async listBookings(
