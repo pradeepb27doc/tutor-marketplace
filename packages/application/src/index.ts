@@ -754,6 +754,11 @@ export type {
   DispatchOutboxResult,
 } from "./notifications/index.js";
 
+// --- Observability ---
+
+export { logger } from "./observability/logger.js";
+export type { LogLevel, LogEntry, LogTransport } from "./observability/logger.js";
+
 // --- Admin & Moderation (Milestone 11D) ---
 
 export * from "./admin/admin.dtos.js";
