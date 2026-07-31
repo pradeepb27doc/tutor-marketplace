@@ -33,7 +33,7 @@ docker compose exec postgres pg_isready -U postgres
 docker compose up -d api
 
 # 4. Wait for API health
-curl -f http://localhost:4000/health
+curl -f http://localhost:4000/v1/health
 
 # 5. Start Worker
 docker compose up -d worker
@@ -59,7 +59,7 @@ docker compose up --build -d
 
 | Service   | Endpoint                        | Expected Response                                      |
 |-----------|----------------------------------|--------------------------------------------------------|
-| API       | `GET http://localhost:4000/health` | `{ "status": "ok", "service": "api", "checkedAt": "..." }` |
+| API       | `GET http://localhost:4000/v1/health` | `{ "status": "ok", "service": "api", "checkedAt": "..." }` |
 | Worker    | Container logs on startup        | Logs: `Worker health check passed`                     |
 | Web       | `GET http://localhost:3000/`     | HTTP 200, HTML page loads                              |
 | Admin     | `GET http://localhost:3001/`     | HTTP 200, HTML page loads                              |
@@ -81,7 +81,7 @@ echo -n "Redis: "
 docker compose exec redis redis-cli ping && echo "OK" || echo "FAIL"
 
 echo -n "API: "
-curl -sf http://localhost:4000/health && echo "OK" || echo "FAIL"
+curl -sf http://localhost:4000/v1/health && echo "OK" || echo "FAIL"
 
 echo -n "Web: "
 curl -sf -o /dev/null http://localhost:3000/ && echo "OK" || echo "FAIL"
@@ -110,7 +110,7 @@ Run these checks after all services are healthy.
 
 ### API
 
-- [ ] `GET /health` returns 200 with `"status": "ok"`
+- [ ] `GET /v1/health` returns 200 with `"status": "ok"`
 - [ ] `GET /api/v1/catalog/tutors` returns valid JSON
 - [ ] `POST /api/v1/auth/register` returns validation errors with proper messages
 - [ ] Authentication endpoints respond without 500 errors
@@ -169,7 +169,7 @@ docker compose up -d api
 docker compose run --rm api pnpm --filter @tutor-marketplace/database prisma migrate resolve --rolled-back <migration-name>
 
 # 5. Verify health
-curl -f http://localhost:4000/health
+curl -f http://localhost:4000/v1/health
 
 # 6. Run smoke tests
 ```

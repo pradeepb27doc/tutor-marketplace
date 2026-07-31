@@ -15,22 +15,57 @@ export class ApiHttpExceptionFilter implements ExceptionFilter {
     const request = context.getRequest<Request>();
     const requestId = getRequestId(request);
 
-    const status = exception instanceof HttpException
-      ? exception.getStatus()
-      : HttpStatus.INTERNAL_SERVER_ERROR;
-    const payload = exception instanceof HttpException ? exception.getResponse() : null;
-    const details = typeof payload === "object" && payload !== null ? payload : undefined;
+    if (exception instanceof HttpException) {
+      const status = exception.getStatus();
+      const payload = exception.getResponse();
+      const details = typeof payload === "object" && payload !== null ? payload : undefined;
+
+      response.setHeader("X-Request-Id", requestId);
+      response.status(status).json({
+        error: {
+          code: resolveCode(status, details),
+          message: resolveMessage(status, payload),
+          requestId,
+          ...(details ? { details } : {}),
+        },
+      });
+      return;
+    }
+
+    if (isApplicationError(exception)) {
+      response.setHeader("X-Request-Id", requestId);
+      response.status(exception.statusCode).json({
+        error: {
+          code: exception.code,
+          message: exception.message,
+          requestId,
+        },
+      });
+      return;
+    }
 
     response.setHeader("X-Request-Id", requestId);
-    response.status(status).json({
+    response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       error: {
-        code: resolveCode(status, details),
-        message: resolveMessage(status, payload),
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Unexpected server failure.",
         requestId,
-        ...(details ? { details } : {}),
       },
     });
   }
+}
+
+function isApplicationError(error: unknown): error is { statusCode: number; code: string; message: string } {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "statusCode" in error &&
+    typeof (error as { statusCode: unknown }).statusCode === "number" &&
+    "code" in error &&
+    typeof (error as { code: unknown }).code === "string" &&
+    "message" in error &&
+    typeof (error as { message: unknown }).message === "string"
+  );
 }
 
 function getRequestId(request: Request): string {

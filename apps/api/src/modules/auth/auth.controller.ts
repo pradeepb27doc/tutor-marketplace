@@ -16,7 +16,7 @@ import { OtpStartDto } from "./dto/otp-start.dto.js";
 import { OtpVerifyDto } from "./dto/otp-verify.dto.js";
 import { LoginDto } from "./dto/login.dto.js";
 import { RefreshTokenDto } from "./dto/refresh-token.dto.js";
-import type {
+import {
   OtpStartUseCase,
   OtpVerifyUseCase,
   LoginUseCase,

@@ -80,7 +80,7 @@ Use this checklist before every production release.
    - [ ] Deploy Admin frontend
 
 5. [ ] Verify health endpoints respond:
-   - [ ] API: `GET /health` returns `200 OK`
+   - [ ] API: `GET /v1/health` returns `200 OK`
    - [ ] Worker: Health logged on startup
    - [ ] Web: Homepage loads successfully
    - [ ] Admin: Dashboard loads successfully
@@ -143,4 +143,4 @@ docker compose build --no-cache
 docker compose up -d
 
 # Health check
-curl http://localhost:4000/health
+curl http://localhost:4000/v1/health

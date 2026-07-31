@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nest start --watch",
+    "prebuild": "pnpm --filter @tutor-marketplace/config build && pnpm --filter @tutor-marketplace/domain build && pnpm --filter @tutor-marketplace/application build && pnpm --filter @tutor-marketplace/database build && pnpm --filter @tutor-marketplace/infrastructure build",
     "build": "nest build",
     "start": "node dist/main.js",
     "typecheck": "tsc --noEmit",

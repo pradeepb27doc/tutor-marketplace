@@ -115,7 +115,7 @@ docker compose build api
 
 Each service exposes a health endpoint:
 
-- API: `http://localhost:4000/health`
+- API: `http://localhost:4000/v1/health`
 - Worker: Health logged on startup
 - Web: `http://localhost:3000/` (homepage)
 - Admin: `http://localhost:3001/` (dashboard)
@@ -192,7 +192,7 @@ DATABASE_URL="..." pnpm --filter @tutor-marketplace/database prisma migrate depl
 
 ### Health check endpoints
 
-- **API**: `GET /health` → `{ "status": "ok", "service": "api", "checkedAt": "..." }`
+- **API**: `GET /v1/health` → `{ "status": "ok", "service": "api", "checkedAt": "..." }`
 - **Worker**: Logs health on startup
 - **Web/Admin**: Application-level health via response status 200
 
