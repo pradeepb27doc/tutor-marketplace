@@ -28,3 +28,4 @@ export { PrismaNotificationRepository, PrismaOutboxEventRepository } from "./rep
 export { LoggingNotificationProvider } from "./providers/logging-notification.provider.js";
 export { PrismaReviewRepository } from "./repositories/prisma-review.repository.js";
 export { PrismaAdminRepository } from "./repositories/prisma-admin.repository.js";
+export { RedisCache, getRedisCache, initializeCache, shutdownCache } from "./cache/redis-cache.js";

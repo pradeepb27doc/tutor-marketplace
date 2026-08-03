@@ -1,6 +1,6 @@
 import Razorpay from "razorpay";
 import { getEnv } from "@tutor-marketplace/config";
-import { createHmac } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 import { verifyRazorpayWebhookSignature } from "./razorpay-webhook-verifier.js";
 import { logger, GatewayNotConfiguredError } from "@tutor-marketplace/application";
 import type {
@@ -84,7 +84,10 @@ export class RazorpayPaymentGateway implements PaymentGatewayPort {
       .update(`${params.providerOrderId}|${params.providerPaymentId}`)
       .digest("hex");
 
-    const verified = generatedSignature === params.signature;
+    const sigBuffer = Buffer.from(params.signature ?? "");
+    const expectedBuffer = Buffer.from(generatedSignature);
+    const verified =
+      sigBuffer.length === expectedBuffer.length && timingSafeEqual(sigBuffer, expectedBuffer);
 
     return {
       verified,

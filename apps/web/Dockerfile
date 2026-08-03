@@ -57,4 +57,11 @@ EXPOSE 3000
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Healthcheck: Next.js standalone server responds on port 3000.
+# Use node instead of wget because wget may not be available in the
+# node:22-alpine image and because the non-root user may not be able
+# to reach localhost via wget even though the server is listening.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+  CMD node -e "const http=require('http');const host=require('os').hostname();const req=http.request({host,port:3000,path:'/',method:'GET',timeout:3000},(res)=>process.exit(res.statusCode<500?0:1));req.on('error',()=>process.exit(1));req.end();" || exit 1
+
 CMD ["node", "apps/web/server.js"]

@@ -1,4 +1,4 @@
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import type { AuthTokensService, TokenPayload, TokenPair } from "@tutor-marketplace/application";
 import { getEnv } from "@tutor-marketplace/config";
 
@@ -17,9 +17,7 @@ function base64UrlDecode(str: string): Buffer {
 }
 
 function hmacSha256(secret: string, data: string): string {
-  const hmac = createHash("sha256");
-  hmac.update(data + secret);
-  return base64UrlEncode(hmac.digest());
+  return createHmac("sha256", secret).update(data).digest("base64url");
 }
 
 export class JwtAuthService implements AuthTokensService {
@@ -47,12 +45,34 @@ export class JwtAuthService implements AuthTokensService {
     const [headerB64, payloadB64, signature] = parts;
     const expectedSig = hmacSha256(this.secret, `${headerB64}.${payloadB64}`);
 
-    if (signature !== expectedSig) {
+    // Constant-time signature comparison to prevent timing attacks
+    const sigBuffer = Buffer.from(signature);
+    const expectedBuffer = Buffer.from(expectedSig);
+    if (
+      sigBuffer.length !== expectedBuffer.length ||
+      !timingSafeEqual(sigBuffer, expectedBuffer)
+    ) {
+      throw new Error("INVALID_TOKEN");
+    }
+
+    // Validate the algorithm header to prevent algorithm confusion attacks
+    let header: { alg?: string };
+    try {
+      header = JSON.parse(base64UrlDecode(headerB64).toString("utf-8")) as { alg?: string };
+    } catch {
+      throw new Error("INVALID_TOKEN");
+    }
+    if (header.alg !== "HS256") {
       throw new Error("INVALID_TOKEN");
     }
 
     const payloadStr = base64UrlDecode(payloadB64).toString("utf-8");
-    const payload = JSON.parse(payloadStr) as TokenPayload;
+    let payload: TokenPayload;
+    try {
+      payload = JSON.parse(payloadStr) as TokenPayload;
+    } catch {
+      throw new Error("INVALID_TOKEN");
+    }
 
     // Check expiration
     if (payload.exp && Date.now() / 1000 > payload.exp) {

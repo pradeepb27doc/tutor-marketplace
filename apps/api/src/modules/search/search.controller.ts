@@ -5,8 +5,12 @@ import {
   SearchTutorsUseCase,
   GetPublicTutorDetailUseCase,
 } from "@tutor-marketplace/application";
+import { RedisCache, getRedisCache } from "@tutor-marketplace/infrastructure";
 import { SearchTutorsQueryDto } from "./dto/search-query.dto.js";
 import { listResponse } from "../../common/api-response.js";
+
+const SEARCH_TTL_SECONDS = 300; // 5 min
+const PROFILE_TTL_SECONDS = 600; // 10 min
 
 @ApiTags("Search")
 @Controller("search")
@@ -14,6 +18,7 @@ export class SearchController {
   constructor(
     private readonly searchTutorsUseCase: SearchTutorsUseCase,
     private readonly getTutorDetailUseCase: GetPublicTutorDetailUseCase,
+    private readonly cache: RedisCache = getRedisCache(),
   ) {}
 
   @Public()
@@ -32,14 +37,35 @@ export class SearchController {
   @ApiQuery({ name: "limit", required: false, description: "Page size (1-50, default 20)", example: 20 })
   @ApiQuery({ name: "cursor", required: false, description: "Cursor for pagination" })
   async searchTutors(@Query() query: SearchTutorsQueryDto) {
-    const result = await this.searchTutorsUseCase.execute({
+    const normalizedQuery = {
       ...query,
       subjectId: query.subjectId ?? query.subjectSlug,
       curricula: query.curricula ?? (query.curriculum ? [query.curriculum] : undefined),
       mode: normalizeMode(query.mode ?? query.serviceMode),
       priceMax: query.priceMax ?? query.maxFee,
+    };
+    const cacheKey = RedisCache.keys.search(
+      this.hashQuery(normalizedQuery),
+      normalizedQuery.cursor ?? "first",
+    );
+
+    const result = await this.cache.getOrSet(
+      cacheKey,
+      async () => {
+        const fresh = await this.searchTutorsUseCase.execute(normalizedQuery);
+        return {
+          data: fresh.data,
+          nextCursor: fresh.nextCursor,
+        };
+      },
+      SEARCH_TTL_SECONDS,
+    );
+
+    return listResponse(result.data, {
+      limit: normalizedQuery.limit,
+      cursor: normalizedQuery.cursor,
+      nextCursor: result.nextCursor,
     });
-    return listResponse(result.data, { limit: query.limit, cursor: query.cursor, nextCursor: result.nextCursor });
   }
 
   @Public()
@@ -50,8 +76,27 @@ export class SearchController {
   @ApiNotFoundResponse({ description: "Tutor not found" })
   @ApiParam({ name: "tutorId", description: "Tutor id", example: "tutor_01JABC" })
   async getTutorDetail(@Param("tutorId") tutorId: string) {
-    const detail = await this.getTutorDetailUseCase.execute({ tutorId });
+    const cacheKey = RedisCache.keys.tutorProfile(tutorId);
+    const detail = await this.cache.getOrSet(
+      cacheKey,
+      () => this.getTutorDetailUseCase.execute({ tutorId }),
+      PROFILE_TTL_SECONDS,
+    );
     return { data: detail };
+  }
+
+  private hashQuery(query: Record<string, unknown>): string {
+    const stable = Object.keys(query)
+      .sort()
+      .map((k) => `${k}:${String(query[k] ?? "")}`)
+      .join("|");
+    let hash = 0;
+    for (let i = 0; i < stable.length; i++) {
+      const char = stable.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash |= 0;
+    }
+    return `hash-${Math.abs(hash)}`;
   }
 }
 

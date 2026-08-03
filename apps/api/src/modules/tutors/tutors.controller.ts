@@ -46,6 +46,7 @@ import {
   GetPublicAvailabilityUseCase,
 } from "@tutor-marketplace/application";
 import type { DayOfWeekValue } from "@tutor-marketplace/application";
+import { RedisCache, getRedisCache } from "@tutor-marketplace/infrastructure";
 import { CreateTutorDto } from "./dto/create-tutor.dto.js";
 import { UpdateTutorDto } from "./dto/update-tutor.dto.js";
 import { AddSubjectDto } from "./dto/add-subject.dto.js";
@@ -89,6 +90,7 @@ export class TutorsController {
     private readonly addBlackoutPeriodUseCase: AddBlackoutPeriodUseCase,
     private readonly removeBlackoutPeriodUseCase: RemoveBlackoutPeriodUseCase,
     private readonly getPublicAvailabilityUseCase: GetPublicAvailabilityUseCase,
+    private readonly cache: RedisCache = getRedisCache(),
   ) {}
 
   // --- Tutor Profile ---
@@ -127,8 +129,11 @@ export class TutorsController {
   @ApiOkResponse({ description: "Tutor profile updated successfully" })
   async updateProfile(@Req() req: Request, @Body() dto: UpdateTutorDto) {
     const user = (req as any).user;
+    const updated = await this.updateTutorProfileUseCase.execute({ userId: user.id, data: dto });
+    // Invalidate cached public tutor profile so changes appear immediately
+    await this.invalidateTutorProfileCache(user.id);
     return {
-      data: await this.updateTutorProfileUseCase.execute({ userId: user.id, data: dto }),
+      data: updated,
     };
   }
 
@@ -140,9 +145,17 @@ export class TutorsController {
   @ApiOkResponse({ description: "Public tutor profile retrieved successfully" })
   @ApiNotFoundResponse({ description: "Tutor profile not found" })
   async getPublicProfile(@Param("tutorId") tutorId: string) {
-    return {
-      data: await this.getPublicTutorProfileUseCase.execute({ tutorId }),
-    };
+    const cacheKey = RedisCache.keys.tutorProfile(tutorId);
+    const data = await this.cache.getOrSet(
+      cacheKey,
+      () => this.getPublicTutorProfileUseCase.execute({ tutorId }),
+      600, // 10 min TTL
+    );
+    return { data };
+  }
+
+  private async invalidateTutorProfileCache(tutorId: string): Promise<void> {
+    await this.cache.invalidate(RedisCache.keys.tutorProfile(tutorId));
   }
 
   // --- Dashboard ---

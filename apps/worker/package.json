@@ -16,6 +16,7 @@
     "@nestjs/core": "11.0.16",
     "@tutor-marketplace/application": "workspace:*",
     "@tutor-marketplace/config": "workspace:*",
+    "@tutor-marketplace/database": "workspace:*",
     "@tutor-marketplace/domain": "workspace:*",
     "@tutor-marketplace/infrastructure": "workspace:*",
     "reflect-metadata": "0.2.2",

@@ -48,17 +48,12 @@ export function buildTutorRecord(input?: Partial<CreateTutorRecord & { id: strin
     experienceYears: 5,
     city: input?.city ?? "Mumbai",
     locality: null,
-    latitude: null,
-    longitude: null,
-    baseHourlyRate: "500.00",
+    baseHourlyRate: input?.baseHourlyRate ?? "500.00",
     currency: "INR",
     profileCompletionScore: 80,
     averageRating: "4.50",
     reviewCount: 10,
     completedClassesCount: 50,
-    cancellationRate: "2.00",
-    responseRate: "95.00",
-    approvedAt: new Date(),
     createdAt: new Date(),
     updatedAt: new Date(),
     deletedAt: null,
@@ -101,7 +96,7 @@ export function buildSubjectRecord(input?: { name?: string; category?: string })
 /**
  * Build a BookingRecord.
  */
-export function buildBookingRecord(input?: Partial<CreateBookingRecord>): BookingRecord {
+export function buildBookingRecord(input?: Partial<CreateBookingRecord> & { id?: string }): BookingRecord {
   return {
     id: input?.id ?? nextId("booking"),
     publicId: `pub-${nextId("booking")}`,
@@ -139,15 +134,17 @@ export function buildBookingRecord(input?: Partial<CreateBookingRecord>): Bookin
 /**
  * Build a PaymentRecord.
  */
-export function buildPaymentRecord(input?: Partial<CreatePaymentRecord>): PaymentRecord {
+export function buildPaymentRecord(
+  input?: Partial<CreatePaymentRecord> & { id?: string; status?: string; providerPaymentId?: string | null; metadata?: Record<string, any> | null },
+): PaymentRecord {
   return {
     id: input?.id ?? nextId("payment"),
     bookingId: input?.bookingId ?? nextId("booking"),
     parentId: input?.parentId ?? nextId("parent"),
     provider: input?.provider ?? "RAZORPAY",
     status: input?.status ?? "PENDING",
-    amount: input?.amount ?? "500.00",
-    platformFeeAmount: input?.platformFeeAmount ?? "50.00",
+    amount: input?.amount ?? 50000,
+    platformFeeAmount: input?.platformFeeAmount ?? 5000,
     currency: input?.currency ?? "INR",
     providerOrderId: input?.providerOrderId ?? null,
     providerPaymentId: input?.providerPaymentId ?? null,
@@ -156,7 +153,7 @@ export function buildPaymentRecord(input?: Partial<CreatePaymentRecord>): Paymen
     capturedAt: null,
     failedAt: null,
     failureReason: null,
-    invoiceMetadata: null,
+    metadata: input?.metadata ?? null,
     createdAt: new Date(),
     updatedAt: new Date(),
   };
@@ -165,7 +162,7 @@ export function buildPaymentRecord(input?: Partial<CreatePaymentRecord>): Paymen
 /**
  * Build a SessionRecord.
  */
-export function buildSessionRecord(input?: Partial<CreateSessionRecord>): SessionRecord {
+export function buildSessionRecord(input?: Partial<CreateSessionRecord> & { id?: string }): SessionRecord {
   return {
     id: input?.id ?? nextId("session"),
     userId: input?.userId ?? nextId("user"),

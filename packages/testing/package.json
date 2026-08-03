@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@prisma/client": "6.6.0",
     "@tutor-marketplace/application": "workspace:*",
     "@tutor-marketplace/config": "workspace:*",
     "@tutor-marketplace/database": "workspace:*",

@@ -1,19 +1,17 @@
-version: "3.9"
-
 services:
   postgres:
     image: postgres:16-alpine
     container_name: tutor-marketplace-postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: tutor_marketplace
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-tutor_marketplace}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -30,6 +28,7 @@ services:
       retries: 5
 
   api:
+    image: tutor-marketplace-api
     build:
       context: .
       dockerfile: apps/api/Dockerfile
@@ -38,9 +37,9 @@ services:
       - "4000:4000"
     environment:
       NODE_ENV: production
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tutor_marketplace?schema=public
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-tutor_marketplace}?schema=public
       REDIS_URL: redis://redis:6379
-      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set to a strong random value}
       JWT_ACCESS_TOKEN_EXPIRY_SECONDS: 900
       JWT_REFRESH_TOKEN_EXPIRY_DAYS: 30
       RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID:-}
@@ -48,6 +47,7 @@ services:
       RAZORPAY_WEBHOOK_SECRET: ${RAZORPAY_WEBHOOK_SECRET:-}
       API_PORT: 4000
       LOG_LEVEL: ${LOG_LEVEL:-info}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:3001}
     depends_on:
       postgres:
         condition: service_healthy
@@ -56,15 +56,16 @@ services:
     restart: unless-stopped
 
   worker:
+    image: tutor-marketplace-worker
     build:
       context: .
       dockerfile: apps/worker/Dockerfile
     container_name: tutor-marketplace-worker
     environment:
       NODE_ENV: production
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tutor_marketplace?schema=public
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-tutor_marketplace}?schema=public
       REDIS_URL: redis://redis:6379
-      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set to a strong random value}
       LOG_LEVEL: ${LOG_LEVEL:-info}
     depends_on:
       postgres:
@@ -74,6 +75,7 @@ services:
     restart: unless-stopped
 
   web:
+    image: tutor-marketplace-web
     build:
       context: .
       dockerfile: apps/web/Dockerfile
@@ -85,10 +87,12 @@ services:
       NEXT_TELEMETRY_DISABLED: 1
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
     depends_on:
-      - api
+      api:
+        condition: service_healthy
     restart: unless-stopped
 
   admin:
+    image: tutor-marketplace-admin
     build:
       context: .
       dockerfile: apps/admin/Dockerfile
@@ -102,7 +106,8 @@ services:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
       NEXT_PUBLIC_ADMIN_URL: ${NEXT_PUBLIC_ADMIN_URL:-http://localhost:3001}
     depends_on:
-      - api
+      api:
+        condition: service_healthy
     restart: unless-stopped
 
 volumes:

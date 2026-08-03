@@ -1,0 +1,235 @@
+# =============================================================================
+# Docker Pipeline — Build, Integration Test, Security Scan
+# =============================================================================
+# Builds all Docker images via docker compose, brings the full stack up,
+# verifies service health endpoints, runs Trivy security scans, and tears
+# down.  Uses BuildKit cache mounts and GitHub Actions cache for fast,
+# repeatable builds.
+# =============================================================================
+name: Docker
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+# Cancel in-flight runs for the same ref when new commits arrive.
+concurrency:
+  group: docker-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOCKER_BUILDKIT: "1"
+  COMPOSE_DOCKER_CLI_BUILD: "1"
+  COMPOSE_PROJECT_NAME: tutor-marketplace
+  JWT_SECRET: ci-docker-test-secret-key-min-16-chars
+  NEXT_PUBLIC_API_URL: http://localhost:4000
+  NEXT_PUBLIC_ADMIN_URL: http://localhost:3001
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # build-and-test — compose build, up, health-check, verify, down
+  # ---------------------------------------------------------------------------
+  build-and-test:
+    name: Build · Up · Verify · Down
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      # ----------------------------------------------------------------- Checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------- Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          buildkitd-flags: --allow-insecure-entitlement network.host
+
+      # ------------------------------------------- Cache Docker BuildKit layers
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      # ------------------------------------------------------- Build all images
+      - name: docker compose build
+        run: docker compose build --progress=plain
+        env:
+          BUILDKIT_PROGRESS: plain
+          BUILDKIT_INLINE_CACHE: "1"
+
+      # --------------------------------------------------------- Start the stack
+      - name: docker compose up -d
+        run: docker compose up -d --wait
+
+      # ------------------------------------------- Wait for healthy services
+      - name: Wait for healthy services
+        run: |
+          set -euo pipefail
+          echo "Waiting for all services to become healthy..."
+          MAX_WAIT=120
+          ELAPSED=0
+
+          while [ "$ELAPSED" -lt "$MAX_WAIT" ]; do
+            STATUS=$(docker compose ps --format json 2>/dev/null || echo "[]")
+            HEALTHY=$(echo "$STATUS" | jq '[.[] | select(.Health == "healthy")] | length' 2>/dev/null || echo "0")
+            TOTAL=$(echo "$STATUS" | jq 'length' 2>/dev/null || echo "0")
+
+            echo "  Healthy: $HEALTHY / $TOTAL services (elapsed ${ELAPSED}s)"
+
+            if [ "$HEALTHY" -ge 5 ] && [ "$TOTAL" -ge 5 ]; then
+              echo "All services are healthy."
+              break
+            fi
+
+            sleep 5
+            ELAPSED=$((ELAPSED + 5))
+          done
+
+          if [ "$ELAPSED" -ge "$MAX_WAIT" ]; then
+            echo "::error::Services did not become healthy within ${MAX_WAIT}s"
+            docker compose ps
+            exit 1
+          fi
+
+      # ------------------------------------------------- Verify API health
+      - name: Verify GET /v1/health
+        run: |
+          set -euo pipefail
+          echo "Checking API health endpoint..."
+          RESPONSE=$(curl -sf --retry 5 --retry-delay 3 --retry-connrefused \
+            http://localhost:4000/v1/health)
+          echo "Response: $RESPONSE"
+          echo "$RESPONSE" | jq -e '.status' > /dev/null
+
+      # ------------------------------------------------- Verify web (port 3000)
+      - name: Verify GET localhost:3000
+        run: |
+          set -euo pipefail
+          echo "Checking web frontend (port 3000)..."
+          STATUS_CODE=$(curl -sf -o /dev/null -w "%{http_code}" --retry 5 --retry-delay 3 \
+            http://localhost:3000)
+          echo "HTTP status: $STATUS_CODE"
+          if [ "$STATUS_CODE" -lt 200 ] || [ "$STATUS_CODE" -ge 500 ]; then
+            echo "::error::Web frontend returned HTTP $STATUS_CODE"
+            exit 1
+          fi
+
+      # ----------------------------------------------- Verify admin (port 3001)
+      - name: Verify GET localhost:3001
+        run: |
+          set -euo pipefail
+          echo "Checking admin frontend (port 3001)..."
+          STATUS_CODE=$(curl -sf -o /dev/null -w "%{http_code}" --retry 5 --retry-delay 3 \
+            http://localhost:3001)
+          echo "HTTP status: $STATUS_CODE"
+          if [ "$STATUS_CODE" -lt 200 ] || [ "$STATUS_CODE" -ge 500 ]; then
+            echo "::error::Admin frontend returned HTTP $STATUS_CODE"
+            exit 1
+          fi
+
+      # ----------------------------------- Collect logs on failure (always runs)
+      - name: Collect logs if failure
+        if: always()
+        run: |
+          mkdir -p logs
+          echo "=== docker compose ps ===" > logs/compose-ps.txt
+          docker compose ps >> logs/compose-ps.txt 2>&1 || true
+          echo "" >> logs/compose-ps.txt
+
+          for svc in postgres redis api worker web admin; do
+            echo "=== $svc logs ===" > "logs/${svc}.log"
+            docker compose logs --tail=200 "$svc" >> "logs/${svc}.log" 2>&1 || true
+            echo "" >> "logs/${svc}.log"
+          done
+
+      # ----------------------------------------------------------- Tear down
+      - name: docker compose down
+        if: always()
+        run: docker compose down --volumes --remove-orphans
+
+      # ------------------------------------------------- Upload logs artifact
+      - name: Upload logs artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-logs
+          path: logs/
+          retention-days: 14
+
+  # ---------------------------------------------------------------------------
+  # trivy-scan — container security scanning on all built images
+  # ---------------------------------------------------------------------------
+  trivy-scan:
+    name: Trivy Security Scan
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Rebuild images (from cache) so Trivy can scan them.
+      - name: Build images for scanning
+        run: docker compose build --progress=plain
+        env:
+          DOCKER_BUILDKIT: "1"
+          BUILDKIT_PROGRESS: plain
+
+      # --------------------------------------------------- Install Trivy
+      - name: Run Trivy vulnerability scanner (API)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: tutor-marketplace-api
+          format: sarif
+          output: trivy-api-results.sarif
+          severity: CRITICAL,HIGH
+          exit-code: "0"
+          ignore-unfixed: true
+
+      - name: Run Trivy vulnerability scanner (Worker)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: tutor-marketplace-worker
+          format: sarif
+          output: trivy-worker-results.sarif
+          severity: CRITICAL,HIGH
+          exit-code: "0"
+          ignore-unfixed: true
+
+      - name: Run Trivy vulnerability scanner (Web)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: tutor-marketplace-web
+          format: sarif
+          output: trivy-web-results.sarif
+          severity: CRITICAL,HIGH
+          exit-code: "0"
+          ignore-unfixed: true
+
+      - name: Run Trivy vulnerability scanner (Admin)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: tutor-marketplace-admin
+          format: sarif
+          output: trivy-admin-results.sarif
+          severity: CRITICAL,HIGH
+          exit-code: "0"
+          ignore-unfixed: true
+
+      # ------------------------------------------- Upload Trivy SARIF artifacts
+      - name: Upload Trivy scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-sarif
+          path: trivy-*.sarif
+          retention-days: 30

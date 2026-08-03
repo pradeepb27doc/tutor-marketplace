@@ -5,7 +5,10 @@ import {
   ListSubjectsUseCase,
   GetSubjectUseCase,
 } from "@tutor-marketplace/application";
+import { RedisCache, getRedisCache } from "@tutor-marketplace/infrastructure";
 import { SubjectParamDto } from "./dto/subject-param.dto.js";
+
+const CATALOG_TTL_SECONDS = 1800; // 30 min — static data, rarely changes
 
 @ApiTags("Catalog")
 @Controller()
@@ -13,6 +16,7 @@ export class CatalogController {
   constructor(
     private readonly listSubjectsUseCase: ListSubjectsUseCase,
     private readonly getSubjectUseCase: GetSubjectUseCase,
+    private readonly cache: RedisCache = getRedisCache(),
   ) {}
 
   @Public()
@@ -21,9 +25,12 @@ export class CatalogController {
   @ApiOperation({ operationId: "listSubjects", summary: "List all active subjects with their children" })
   @ApiOkResponse({ description: "List of active subjects retrieved successfully" })
   async listSubjects() {
-    return {
-      data: await this.listSubjectsUseCase.execute(),
-    };
+    const data = await this.cache.getOrSet(
+      RedisCache.keys.subjects(),
+      () => this.listSubjectsUseCase.execute(),
+      CATALOG_TTL_SECONDS,
+    );
+    return { data };
   }
 
   @Public()
@@ -33,9 +40,13 @@ export class CatalogController {
   @ApiOkResponse({ description: "Subject retrieved successfully" })
   @ApiNotFoundResponse({ description: "Subject not found" })
   async getSubject(@Param() params: SubjectParamDto) {
-    return {
-      data: await this.getSubjectUseCase.execute({ slug: params.subjectSlug }),
-    };
+    const cacheKey = RedisCache.keys.subjectsByCategory(params.subjectSlug);
+    const data = await this.cache.getOrSet(
+      cacheKey,
+      () => this.getSubjectUseCase.execute({ slug: params.subjectSlug }),
+      CATALOG_TTL_SECONDS,
+    );
+    return { data };
   }
 
   @Public()
@@ -86,8 +97,9 @@ export class CatalogController {
   @ApiOperation({ operationId: "listFilters", summary: "Get supported filter options for search UI" })
   @ApiOkResponse({ description: "Filter options retrieved successfully" })
   async listFilters() {
-    return {
-      data: {
+    const data = await this.cache.getOrSet(
+      RedisCache.keys.filters(),
+      async () => ({
         subjects: await this.listSubjectsUseCase.execute(),
         grades: [
           { value: 1, label: "Grade 1" },
@@ -116,7 +128,9 @@ export class CatalogController {
           { value: "HOME_TUITION", label: "Home Tuition" },
           { value: "GROUP_CLASS", label: "Group Class" },
         ],
-      },
-    };
+      }),
+      CATALOG_TTL_SECONDS,
+    );
+    return { data };
   }
 }

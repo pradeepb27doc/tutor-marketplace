@@ -1,4 +1,4 @@
-import type { UserRecord, CreateUserRecord, TutorRecord, CreateTutorRecord, ParentRecord, CreateParentRecord, BookingRecord, CreateBookingRecord, PaymentRecord, CreatePaymentRecord, SessionRecord, CreateSessionRecord, OtpChallengeRecord, CreateOtpChallengeRecord, StudentRecord, CreateStudentRecord } from "@tutor-marketplace/application";
+import type { UserRecord, CreateUserRecord, TutorRecord, CreateTutorRecord, ParentRecord, BookingRecord, CreateBookingRecord, PaymentRecord, CreatePaymentRecord, SessionRecord, CreateSessionRecord, OtpChallengeRecord, CreateOtpChallengeRecord, StudentRecord, CreateStudentRecord } from "@tutor-marketplace/application";
 import { buildUserRecord, buildTutorRecord, buildParentRecord, buildBookingRecord, buildPaymentRecord, buildSubjectRecord, buildSessionRecord, buildOtpChallengeRecord, buildStudentRecord } from "./factories.js";
 
 /**

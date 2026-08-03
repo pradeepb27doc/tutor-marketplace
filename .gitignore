@@ -31,3 +31,6 @@ Thumbs.db
 packages/database/generated/
 tmp/
 
+# Test runner output dumps
+test-*-output.txt
+

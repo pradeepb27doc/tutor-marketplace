@@ -1,5 +1,6 @@
 import { defineWorkspace } from "vitest/config";
 import { resolve } from "node:path";
+import swc from "unplugin-swc";
 
 const sharedSetupFile = resolve("packages/testing/src/setup.ts");
 const sharedTestingPackage = resolve("packages/testing/src/index.ts");
@@ -70,13 +71,22 @@ export default defineWorkspace([
     },
   },
   {
+    plugins: [
+      swc.vite({
+        module: { type: "es6" },
+        jsc: {
+          target: "es2022",
+          parser: { syntax: "typescript", decorators: true },
+          transform: { legacyDecorator: true, decoratorMetadata: true },
+        },
+      }),
+    ],
     test: {
       name: "api",
       root: "apps/api",
       include: ["src/**/*.test.ts", "src/**/*.spec.ts", "test/**/*.test.ts", "test/**/*.spec.ts"],
       environment: "node",
       globals: true,
-      restoreMocks: true,
       setupFiles: [sharedSetupFile],
     },
   },

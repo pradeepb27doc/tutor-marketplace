@@ -13,9 +13,10 @@
   "dependencies": {
     "@tutor-marketplace/application": "workspace:*",
     "@tutor-marketplace/config": "workspace:*",
-    "@tutor-marketplace/domain": "workspace:*",
     "@tutor-marketplace/database": "workspace:*",
-    "razorpay": "2.9.6"
+    "@tutor-marketplace/domain": "workspace:*",
+    "razorpay": "2.9.6",
+    "redis": "^6.2.0"
   },
   "devDependencies": {
     "@types/node": "22.14.1",

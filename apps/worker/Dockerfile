@@ -54,7 +54,10 @@ RUN --mount=type=cache,target=/pnpm/store \
       --config.fetch-retry-mintimeout=10000
 
 # Build the worker.  --frozen-lockfile ensures the lockfile is never mutated
-# during the build step either.
+# during the build step either.  The worker's package.json defines a
+# "prebuild" script that builds all required workspace packages
+# (config, domain, application, database, infrastructure) before the
+# "build" script runs `nest build`.
 RUN --mount=type=cache,target=/pnpm/store \
     pnpm --filter @tutor-marketplace/worker build
 
@@ -109,5 +112,12 @@ RUN addgroup --system --gid 1001 nodejs \
 COPY --from=builder --chown=nestjs:nodejs /prod/worker ./
 
 USER nestjs
+
+# The worker is a background process (NestJS application context) with no HTTP
+# server.  The healthcheck verifies the process is alive by reading /proc/1/comm
+# — the kernel-maintained command name of PID 1.  If the node process has
+# crashed the container stops and Docker restarts it (restart: unless-stopped).
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+  CMD node -e "process.exit(require('fs').readFileSync('/proc/1/comm','utf8').trim()==='node'?0:1)" || exit 1
 
 CMD ["node", "dist/main.js"]
